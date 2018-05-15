@@ -1,0 +1,22 @@
+{
+  "name": "junaidbhura/fooclient",
+  "description": "Custom website for Foo Client",
+  "repositories":[
+    {
+      "type":"composer",
+      "url":"https://wpackagist.org"
+    }
+  ],
+  "extra": {
+    "wordpress-install-dir": "wp"
+  },
+  "require": {
+    "johnpbloch/wordpress": "4.9.5"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "*",
+    "phpunit/phpunit": "6.1.0",
+    "wp-coding-standards/wpcs": "*"
+  }
+}
+

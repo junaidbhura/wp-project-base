@@ -1,0 +1,16 @@
+<phpunit
+	bootstrap=".tests/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	>
+	<testsuites>
+		<!-- Default test suite to run all tests -->
+		<testsuite name="Default">
+			<directory prefix="test-" suffix=".php">.tests</directory>
+			<!--<directory prefix="test-" suffix=".php">wp-content/mu-plugins/fooclient/.tests</directory>-->
+		</testsuite>
+	</testsuites>
+</phpunit>

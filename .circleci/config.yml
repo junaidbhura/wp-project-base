@@ -1,0 +1,84 @@
+version: 2
+jobs:
+  php_stuff:
+    docker:
+      - image: circleci/php:7.1.9-browsers
+        environment:
+          MYSQL_HOST=127.0.0.1
+          MYSQL_PORT=3306
+          MYSQL_USER=root
+          MYSQL_PASSWORD=
+          MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - image: circleci/mysql:5.6
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: MySQL Database
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y mysql-client
+            sudo docker-php-ext-install mysqli
+            mysql -u root -e "CREATE DATABASE wp_tests"
+      - restore_cache:
+          keys:
+            - php-cache-{{ checksum "composer.json" }}
+      - run:
+          name: Install Composer Packages
+          command: composer install
+      - run:
+          name: Install WordPress Coding Standards
+          command: vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
+      - save_cache:
+          key: php-cache-{{ checksum "composer.json" }}
+          paths:
+            - vendor
+            - wp
+      - run:
+          name: PHPCS Test
+          command: vendor/bin/phpcs
+      - run:
+          name: Unit Tests
+          command: vendor/bin/phpunit
+  node_stuff:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install Node Packages
+          command: sudo npm install --unsafe-perm
+      - save_cache:
+          key: node-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: JSCS Test
+          command: node_modules/.bin/jscs wp-content/themes/fooclient/assets/js/main.js
+      - run:
+          name: StyleLint Test
+          command: |
+            node_modules/.bin/stylelint "wp-content/themes/fooclient/assets/css/*.scss"
+            node_modules/.bin/stylelint "wp-content/themes/fooclient/assets/css/**/*.scss"
+            node_modules/.bin/stylelint "wp-content/themes/fooclient/assets/css/**/**/*.scss"
+      - run:
+          name: JSHint Test
+          command: node_modules/.bin/jshint wp-content/themes/fooclient/assets/js/main.js
+workflows:
+  version: 2
+  test_everything:
+    jobs:
+      - php_stuff:
+          filters:
+            branches:
+              only:
+                - master
+      - node_stuff:
+          filters:
+            branches:
+              only:
+                - master

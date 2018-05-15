@@ -1,0 +1,115 @@
+/**
+ * Mixins.
+ */
+
+@mixin clearfix() {
+
+	&::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+@mixin opacity-fade( $opacity: 0.85 ) {
+	opacity: $opacity;
+
+	@include transition( opacity );
+
+	&:hover {
+		opacity: 1;
+	}
+}
+
+@mixin background-color-fade( $background-color: #000, $percentage: 5% ) {
+	background-color: lighten($background-color, $percentage);
+
+	@include transition( background-color );
+
+	&:hover {
+		background-color: $background-color;
+	}
+}
+
+@mixin color-fade( $color: #000, $percentage: 5% ) {
+	color: lighten($color, $percentage);
+
+	@include transition( color );
+
+	&:hover {
+		color: $color;
+	}
+}
+
+@mixin font-size( $font-size: 16px, $line-height: 0 ) {
+	font-size: $font-size;
+
+	@if $line-height > 0 {
+		line-height: #{$line-height / $font-size}em;
+	}
+}
+
+@mixin calculate-aspect-ratio( $width, $height ) {
+	padding-bottom: ( ( $height / $width ) * 100 ) * 1%;
+}
+
+@mixin transition( $property: all, $duration: 0.15, $ease: ease-in ) {
+	-webkit-transition: $property #{$duration}s $ease;
+	-moz-transition: $property #{$duration}s $ease;
+	-o-transition: $property #{$duration}s $ease;
+	transition: $property #{$duration}s $ease;
+}
+
+@mixin background-svg-fallback-png( $path ) {
+	$png-url: "#{$path}.png";
+	$svg-url: "#{$path}.svg";
+	background-image: url($png-url);
+	background-image: linear-gradient(transparent, transparent), url($svg-url);
+}
+
+@mixin placeholder-color( $color: #000, $opacity: 1 ) {
+
+	&::-webkit-input-placeholder {
+		color: $color;
+		opacity: $opacity !important;
+	}
+
+	&::-moz-placeholder {
+		color: $color;
+		opacity: $opacity !important;
+	}
+
+	&:-moz-placeholder {
+		color: $color;
+		opacity: $opacity !important;
+	}
+
+	&:-ms-input-placeholder {
+		color: $color;
+		opacity: $opacity !important;
+	}
+}
+
+@mixin css-triangle( $width: 11px, $height: 7px, $color: "#000", $direction: "down" ) {
+	width: 0;
+	height: 0;
+	border-style: solid;
+
+	@if ( $direction == "down" ) {
+		$half-width: $width / 2;
+		border-width: $height $half-width 0 $half-width;
+		border-color: $color transparent transparent transparent;
+	} @else if ( $direction == "up" ) {
+		$half-width: $width / 2;
+		border-width: 0 $half-width $height $half-width;
+		border-color: transparent transparent $color transparent;
+	} @else if ( $direction == "left" ) {
+		$half-height: $height / 2;
+		border-width: $half-height $width $half-height 0;
+		border-color: transparent $color transparent transparent;
+	} @else if ( $direction == "right" ) {
+		$half-height: $height / 2;
+		border-width: $half-height 0 $half-height $width;
+		border-color: transparent transparent transparent $color;
+	}
+}

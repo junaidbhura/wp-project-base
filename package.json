@@ -1,0 +1,26 @@
+{
+  "name": "fooclient",
+  "version": "1.0.0",
+  "description": "Custom website for Foo Client",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Foo/Client.git"
+  },
+  "author": "Junaid Bhura",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Foo/Client/issues"
+  },
+  "homepage": "https://github.com/Foo/Client#readme",
+  "devDependencies": {
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.5",
+    "stylelint": "^9.2.0",
+    "stylelint-config-wordpress": "^13.0.0"
+  },
+  "dependencies": {}
+}

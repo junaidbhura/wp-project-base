@@ -1,0 +1,38 @@
+# --- Windows and Mac files
+[Tt]humbs.db
+.DS_Store
+node_modules
+
+# --- Root
+/*
+!.circleci
+!.gitignore
+!.gitmodules
+!.jscsrc
+!.jshintignore
+!.jshintrc
+!.tests
+!composer.json
+!gulpfile.js
+!package.json
+!package-lock.json
+!phpcs.xml
+!phpunit.xml
+!.stylelintrc
+!.stylelintignore
+!wp-content/
+!README.md
+
+# --- WordPress Bootstrap
+!index.php
+!wp-config.php
+!wp-cli.yml
+!wp-config-local.php
+
+# --- Content
+wp-content/*
+!wp-content/themes/
+!wp-content/mu-plugins/
+
+wp-content/themes/*
+!wp-content/themes/fooclient/
