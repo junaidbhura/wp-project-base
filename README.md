@@ -46,13 +46,13 @@ There's also the the problem of third-party mu-plugins. Creating a separation be
 
 And then there's autoloading. Each feature plugin would require it's own autoloader. Some people define a global autoloader which they call within each feature plugin, and others define a new autoloader in each plugin.
 
-#### Packages 🎉
+#### A Single Package 🎉
 
-This would all be simplified if we started to look at the custom code written for a client as a "package". Doing this, we would:
+This would all be simplified if we started to look at the custom code written for a client as a single "package". Doing this, we would:
 
 1. Make a single directory for the client in the `mu-plugins` directory. All custom code for the client would live here
 1. Each feature or module would be a subdirectory of this directory, and be it's own independant world. Feature directories / modules can be added or removed, just like an individual `mu-plugin` would, and can even have their own tests
-1. Since each feature is it's own directory and world, they can be re-usable
+1. Since each feature is it's own directory and world, it can be re-usable
 1. Have a single autoloader for the entire package, giving structure to the project
 1. Have a single bootstrap file within the package, where the features / modules can load in any particular order
 1. Be free to share the `mu-plugins` directory with other custom code or vendor plugins. So it "belongs" to everyone
