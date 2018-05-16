@@ -25,7 +25,7 @@ function autoloader( $class ) {
 	if ( 1 === $total_fragments ) {
 		$file = $class_path[0] . DIRECTORY_SEPARATOR . 'class-' . str_replace( '_', '-', $class_path[0] ) . '.php';
 	} else {
-		$class_path[ $total_fragments - 1 ] = 'class-' . str_replace( '_', '-', $class_path[ $total_fragments - 1 ] ). '.php';
+		$class_path[ $total_fragments - 1 ] = 'class-' . str_replace( '_', '-', $class_path[ $total_fragments - 1 ] ) . '.php';
 		$class_path[0]                      = $class_path[0] . DIRECTORY_SEPARATOR . 'inc';
 		$file                               = implode( DIRECTORY_SEPARATOR, $class_path );
 	}

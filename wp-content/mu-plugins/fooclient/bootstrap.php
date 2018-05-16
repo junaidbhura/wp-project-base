@@ -12,32 +12,27 @@ namespace FooClient;
  */
 function bootstrap() {
 
-	/**
-	 * Structure: 'directory' => 'namespace'
-	 */
-	$modules = array(
-		'bar' => 'FooClient\Bar',
-	);
-	foreach ( $modules as $dir => $namespace ) {
-		load_module( $dir, $namespace );
-	}
+	load_module( 'bar', 'FooClient\Bar' );
 
 }
 
 /**
  * Load a module.
  *
- * @param string $dir The directory.
- * @param string $namespace The namespace.
+ * @param string $dir The module's directory.
+ * @param string $namespace The module's namespace.
+ * @param string $hook The hook to use for the module's setup function.
  */
-function load_module( $dir = '', $namespace = '' ) {
+function load_module( $dir = '', $namespace = '', $hook = 'plugins_loaded' ) {
 	$path = __DIR__ . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $dir . '.php';
 	if ( file_exists( $path ) ) {
 		require_once $path;
 
-		$setup_function = $namespace . '\setup';
-		if ( function_exists( $setup_function ) ) {
-			$setup_function();
+		if ( ! empty( $namespace ) && ! empty( $hook ) ) {
+			$setup_function = $namespace . '\setup';
+			if ( function_exists( $setup_function ) ) {
+				add_action( $hook, $setup_function );
+			}
 		}
 	}
 }
