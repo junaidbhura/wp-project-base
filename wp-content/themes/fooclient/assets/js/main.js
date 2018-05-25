@@ -11,4 +11,4 @@ jQuery( function( $ ) {
 	// Add your JS here.
 	alert( 'Hello :)' );
 
-}); // Main jQuery function end
+} ); // Main jQuery function end

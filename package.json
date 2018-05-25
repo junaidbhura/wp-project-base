@@ -17,9 +17,10 @@
   },
   "homepage": "https://github.com/Foo/Client#readme",
   "devDependencies": {
-    "jscs": "^3.0.7",
+    "eslint": "^4.19.1",
+    "eslint-config-wordpress": "^2.0.0",
     "jshint": "^2.9.5",
-    "stylelint": "^9.2.0",
+    "stylelint": "^9.2.1",
     "stylelint-config-wordpress": "^13.0.0"
   },
   "dependencies": {}

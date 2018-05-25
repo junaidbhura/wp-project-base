@@ -1,0 +1,7 @@
+{
+  "extends": "wordpress",
+  "rules": {
+    "space-in-parens": [ 2, "always", { "exceptions": [ "[]" ] } ],
+    "vars-on-top": [0]
+  }
+}

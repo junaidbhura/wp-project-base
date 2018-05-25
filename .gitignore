@@ -6,9 +6,9 @@ node_modules
 # --- Root
 /*
 !.circleci
+!.eslintrc.json
 !.gitignore
 !.gitmodules
-!.jscsrc
 !.jshintignore
 !.jshintrc
 !.tests

@@ -57,8 +57,8 @@ jobs:
           paths:
             - node_modules
       - run:
-          name: JSCS Test
-          command: node_modules/.bin/jscs wp-content/themes/fooclient/assets/js/main.js
+          name: ESLINT Test
+          command: node_modules/.bin/eslint wp-content/themes/fooclient/assets/js/main.js
       - run:
           name: StyleLint Test
           command: |
