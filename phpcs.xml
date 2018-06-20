@@ -8,9 +8,15 @@
 		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize" />
 		<exclude name="WordPress.CSRF.NonceVerification.NoNonceVerification" />
 		<exclude name="WordPress.Variables.GlobalVariables.OverrideProhibited" />
-		<exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
+		<exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" /><exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
 	</rule>
 	<rule ref="WordPress-Docs" />
+
+	<rule ref="WordPress.Arrays.MultipleStatementAlignment">
+		<properties>
+			<property name="maxColumn" value="1000" />
+		</properties>
+	</rule>
 
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php" />
