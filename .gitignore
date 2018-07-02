@@ -14,6 +14,7 @@ node_modules
 !.jshintrc
 !.tests
 !composer.json
+!composer.lock
 !gulpfile.js
 !package.json
 !package-lock.json
