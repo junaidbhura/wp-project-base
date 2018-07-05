@@ -89,6 +89,11 @@ if ( ! defined( 'ENV_DEVELOPMENT' ) ) {
 }
 
 /**
+ * Disable WordPress cron.
+ */
+define( 'DISABLE_WP_CRON', true );
+
+/**
  * WP CLI Fix.
  *
  * @see https://make.wordpress.org/cli/handbook/common-issues/#php-notice-undefined-index-on-_server-superglobal
