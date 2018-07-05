@@ -84,7 +84,11 @@ if ( defined( 'ENV_DEVELOPMENT' ) ) {
 	define( 'DISALLOW_FILE_MODS', ! ENV_DEVELOPMENT );
 }
 
-if ( ! defined( 'ENV_DEVELOPMENT' ) ) {
+
+/**
+ * Enable WordPress cache for production sites.
+ */
+if ( ! defined( 'ENV_DEVELOPMENT' ) || false === ENV_DEVELOPMENT ) {
 	defined( 'WP_CACHE' ) or define( 'WP_CACHE', true );
 }
 
