@@ -8,10 +8,10 @@
     }
   ],
   "extra": {
-    "wordpress-install-dir": "wp"
+    "wordpress-install-dir": "web/wp"
   },
   "require": {
-    "johnpbloch/wordpress": "4.9.5"
+    "johnpbloch/wordpress": "4.9.8"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "*",

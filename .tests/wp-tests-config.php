@@ -42,7 +42,5 @@ define( 'DISALLOW_FILE_MODS', true );
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', dirname( __DIR__ ) . '/wp/' );
+	define( 'ABSPATH', dirname( __DIR__ ) . '/web/wp/' );
 }
-
-//include_once( __DIR__ . '/../wp-config.php' );

@@ -1,7 +1,10 @@
 # --- Windows and Mac files
 [Tt]humbs.db
 .DS_Store
+
+# --- Packages
 node_modules
+vendor
 
 # --- Root
 /*
@@ -22,19 +25,23 @@ node_modules
 !phpunit.xml
 !.stylelintrc
 !.stylelintignore
-!wp-content/
+!web/
 !README.md
 
-# --- WordPress Bootstrap
-!index.php
-!wp-config.php
-!wp-cli.yml
-!wp-config-local.php
+# -- Tests
+.tests/wp-tests-config-local.php
 
-# --- Content
-wp-content/*
-!wp-content/themes/
-!wp-content/mu-plugins/
+# --- WordPress
+web/*
+!wp-content/
+!web/index.php
+!web/wp-config.php
+!web/wp-config-local.php
 
-wp-content/themes/*
-!wp-content/themes/fooclient/
+# --- WP Content
+web/wp-content/*
+!web/wp-content/themes/
+!web/wp-content/mu-plugins/
+
+web/wp-content/themes/*
+!web/wp-content/themes/fooclient/

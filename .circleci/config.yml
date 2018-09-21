@@ -33,8 +33,8 @@ jobs:
           key: php-cache-{{ checksum "composer.lock" }}-{{ checksum ".circleci/config.yml" }}
           paths:
             - vendor
-            - wp
-            - wp-content/plugins
+            - web/wp
+            - web/wp-content/plugins
       - run:
           name: PHPCS Test
           command: vendor/bin/phpcs
@@ -59,16 +59,16 @@ jobs:
             - node_modules
       - run:
           name: ESLINT Test
-          command: node_modules/.bin/eslint wp-content/themes/fooclient/assets/js/main.js
+          command: node_modules/.bin/eslint web/wp-content/themes/fooclient/assets/js/main.js
       - run:
           name: StyleLint Test
           command: |
-            node_modules/.bin/stylelint "wp-content/themes/fooclient/assets/css/*.scss"
-            node_modules/.bin/stylelint "wp-content/themes/fooclient/assets/css/**/*.scss"
-            node_modules/.bin/stylelint "wp-content/themes/fooclient/assets/css/**/**/*.scss"
+            node_modules/.bin/stylelint "web/wp-content/themes/fooclient/assets/css/*.scss"
+            node_modules/.bin/stylelint "web/wp-content/themes/fooclient/assets/css/**/*.scss"
+            node_modules/.bin/stylelint "web/wp-content/themes/fooclient/assets/css/**/**/*.scss"
       - run:
           name: JSHint Test
-          command: node_modules/.bin/jshint wp-content/themes/fooclient/assets/js/main.js
+          command: node_modules/.bin/jshint web/wp-content/themes/fooclient/assets/js/main.js
 workflows:
   version: 2
   test_everything:
