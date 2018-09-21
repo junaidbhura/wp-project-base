@@ -20,7 +20,6 @@ vendor
 !composer.lock
 !gulpfile.js
 !package.json
-!package-lock.json
 !phpcs.xml
 !phpunit.xml
 !.stylelintrc
