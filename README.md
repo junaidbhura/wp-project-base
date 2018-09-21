@@ -64,6 +64,24 @@ This would all be simplified if we started to look at the custom code written fo
 
 Since Composer can also use Git repos, it makes more sense to just use Composer for dependancy management.
 
+## Setup
+
+### Environment Setup
+
+1. Clone this repository for your new project. `git clone https://github.com/junaidbhura/wp-project-base.git . && rm -rf .git`
+1. Run `composer install` to install WordPress, and all plugins.
+1. Run `vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs` to set WordPress coding standards for PHPCS.
+1. Run `npm install` to install ESLint, JSHint and JSCS
+1. Go to the theme directory (web/wp-content/themes/fooclient) and run `npm install` to install Gulp.
+1. Run `gulp` to build the CSS.
+1. Update `web/wp-config-local.php` and change the database paths, and add in all other details.
+
+### Unit Tests Setup
+
+1. Create a new database for unit tests.
+1. Copy `.tests/wp-tests-config-local-sample.php` to `.tests/wp-tests-config-local.php` and add your local database.
+1. Run `vendor/bin/phpunit` to execute.
+
 
 ## Thoughts?
 
