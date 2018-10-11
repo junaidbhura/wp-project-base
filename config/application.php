@@ -63,7 +63,7 @@ defined( 'WP_CONTENT_URL' ) || define( 'WP_CONTENT_URL', WP_HOME . '/wp-content'
 
 /**
  * Prevent editing of files through the admin.
- * Enable installing and upgrading plugins f|| dev sites.
+ * Enable installing and upgrading plugins for dev sites.
  */
 define( 'DISALLOW_FILE_EDIT', true );
 if ( defined( 'ENV_DEVELOPMENT' ) ) {
