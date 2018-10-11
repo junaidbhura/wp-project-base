@@ -24,12 +24,17 @@ vendor
 !phpunit.xml
 !.stylelintrc
 !.stylelintignore
+!config/
 !web/
 !wp-cli.yml
 !README.md
 
 # -- Tests
 .tests/wp-tests-config-local.php
+
+# --- Config
+config/environments/*
+!config/environments/local-sample.php
 
 # --- WordPress
 web/*
