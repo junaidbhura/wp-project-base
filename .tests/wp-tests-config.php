@@ -30,7 +30,7 @@ if ( ! defined( 'WP_HOME' ) ) {
 }
 
 // Define path & url for Content
-define( 'WP_CONTENT_DIR', dirname( __DIR__ ) . '/wp-content' );
+define( 'WP_CONTENT_DIR', dirname( __DIR__ ) . '/web/wp-content' );
 define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
 
 $table_prefix = 'wptests_';

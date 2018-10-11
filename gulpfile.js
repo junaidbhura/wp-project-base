@@ -12,21 +12,23 @@ var gulp         = require( 'gulp' ),
 	rename       = require( 'gulp-rename' ),
 	notify       = require( 'gulp-notify' );
 
+var pathToTheme = 'web/wp-content/themes/fooclient';
+
 /**
  * Build CSS.
  */
 gulp.task( 'build-css', function() {
-	return gulp.src( 'assets/css/fooclient/fooclient.scss' )
-		.pipe( plumber({
-			errorHandler: notify.onError({
+	return gulp.src( pathToTheme + '/assets/css/fooclient/fooclient.scss' )
+		.pipe( plumber( {
+			errorHandler: notify.onError( {
 				'title': 'Gulp: CSS Build Error',
 				'message': 'Line: <%= error.line %> in "<%= error.file.replace( /^.*[\\\/]/, \'\' ) %>"'
-			})
-		}) )
-		.pipe( sass({
+			} )
+		} ) )
+		.pipe( sass( {
 			outputStyle: 'compressed'
-		}) )
-		.pipe( autoprefixer({
+		} ) )
+		.pipe( autoprefixer( {
 			cascade: false,
 			remove: false,
 			browsers: [
@@ -36,23 +38,23 @@ gulp.task( 'build-css', function() {
 				'Safari >= 6',
 				'Opera >= 12'
 			]
-		}) )
+		} ) )
 		.pipe( rename( { extname: '.min.css' } ) )
-		.pipe( gulp.dest( 'assets/css' ) )
-		.pipe( notify({
+		.pipe( gulp.dest( pathToTheme + '/assets/css' ) )
+		.pipe( notify( {
 			'title': 'Gulp: Success',
 			'message': 'CSS Build Complete!'
-		}) );
-});
+		} ) );
+} );
 
 /**
  * Watch Files.
  */
 gulp.task( 'watch', function() {
-	gulp.watch( 'assets/css/fooclient/*.scss', ['build-css'] );
-	gulp.watch( 'assets/css/fooclient/*/*.scss', ['build-css'] );
-	gulp.watch( 'assets/css/fooclient/*/*/*.scss', ['build-css'] );
-});
+	gulp.watch( pathToTheme + '/assets/css/fooclient/*.scss', ['build-css'] );
+	gulp.watch( pathToTheme + '/assets/css/fooclient/*/*.scss', ['build-css'] );
+	gulp.watch( pathToTheme + '/assets/css/fooclient/*/*/*.scss', ['build-css'] );
+} );
 
 /**
  * Default Task.

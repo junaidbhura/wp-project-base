@@ -25,6 +25,7 @@ vendor
 !.stylelintrc
 !.stylelintignore
 !web/
+!wp-cli.yml
 !README.md
 
 # -- Tests
@@ -35,7 +36,7 @@ web/*
 !wp-content/
 !web/index.php
 !web/wp-config.php
-!web/wp-config-local.php
+!web/wp-config-local-sample.php
 
 # --- WP Content
 web/wp-content/*

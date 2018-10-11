@@ -4,7 +4,7 @@
   "description": "Custom website for Foo Client",
   "main": "index.php",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp build-css"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,16 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-wordpress": "^2.0.0",
-    "jshint": "^2.9.5",
+    "jshint": "^2.9.6",
     "stylelint": "^9.2.1",
     "stylelint-config-wordpress": "^13.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1"
+  }
 }
