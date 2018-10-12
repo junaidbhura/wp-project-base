@@ -71,10 +71,9 @@ Since Composer can also use Git repos, it makes more sense to just use Composer 
 1. Clone this repository for your new project. `git clone https://github.com/junaidbhura/wp-project-base.git . && rm -rf .git`
 1. Run `composer install` to install WordPress, and all plugins.
 1. Run `vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs` to set WordPress coding standards for PHPCS.
-1. Run `npm install` to install ESLint, JSHint and JSCS
-1. Go to the theme directory (web/wp-content/themes/fooclient) and run `npm install` to install Gulp.
+1. Run `npm install` to install Gulp, ESLint, JSHint and JSCS
 1. Run `gulp` to build the CSS.
-1. Update `web/wp-config-local.php` and change the database paths, and add in all other details.
+1. Copy `config/environments/local-sample.php` to `config/environments/local.php` for a local environment, or `config/environments/production.php` for a production environment. Change the database paths, and add in all other details.
 
 ### Unit Tests Setup
 
