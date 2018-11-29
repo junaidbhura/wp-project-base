@@ -23,42 +23,17 @@ I've made this repo to constantly evolve with new ideas and best practices. I us
 
 ## MU Plugin architecture
 
-I've used [HumanMade's plugin loader](https://github.com/humanmade/hm-base) to load in MU plugins.
+I've used [HumanMade's plugin loader](https://github.com/humanmade/hm-base) and MU plugin architecture.
 
+#### Multiple Plugins
 
-### A "Package" Vs. Multiple Plugins
-
-The way you structure a project depends on the context in which you see a project. The best practice to write custom code is to separate it from the theme and add it to an `mu-plugin`.
-
-#### Multiple Plugins 🤔
-
-The most popular way to structure mu-plugins seems to be to write each "feature" as a separate plugin. The idea is to:
+All custom functionality is written in separate, modular plugins with the following philosophy:
 
 1. Make the code modular
 1. Make the code re-usable
 1. Make each plugin (module) do one thing
 1. Make it easy to add and remove new features
 1. Make it easy to maintain and test
-
-That sounds great. But this quickly becomes a problem if you're working on a large website with a ton of features. The `mu-plugins` directory would start to get a little out of hand.
-
-There's also the the problem of third-party mu-plugins. Creating a separation between the client's plugins and vendor plugins comes down to naming the folders. Some people create a `vendor` directory and add all third-party plugins there. So in other words, the `mu-plugins` directory "belongs" to the client and the `mu-plugins/vendor` directory "belongs" to every other vendor.
-
-And then there's autoloading. Each feature plugin would require it's own autoloader. Some people define a global autoloader which they call within each feature plugin, and others define a new autoloader in each plugin.
-
-#### A Single Package 🎉
-
-This would all be simplified if we started to look at the custom code written for a client as a single "package". Doing this, we would:
-
-1. Make a single directory for the client in the `mu-plugins` directory. All custom code for the client would live here
-1. Each feature or module would be a subdirectory of this directory, and be it's own independant world. Feature directories / modules can be added or removed, just like an individual `mu-plugin` would, and can even have their own tests
-1. Since each feature is it's own directory and world, it can be re-usable
-1. Have a single autoloader for the entire package, giving structure to the project
-1. Have a single bootstrap file within the package, where the features / modules can load in any particular order
-1. Be free to share the `mu-plugins` directory with other custom code or vendor plugins. So it "belongs" to everyone
-1. Make code sniffing and test configs much simpler
-1. Make the whole package portable, so it can be moved around easily, depending on the host (think WordPress VIP)
-
 
 ## Composer and Git Submodules
 
@@ -71,9 +46,9 @@ Since Composer can also use Git repos, it makes more sense to just use Composer 
 1. Clone this repository for your new project. `git clone https://github.com/junaidbhura/wp-project-base.git . && rm -rf .git`
 1. Run `composer install` to install WordPress, and all plugins.
 1. Run `vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs` to set WordPress coding standards for PHPCS.
-1. Run `npm install` to install Gulp, ESLint, JSHint and JSCS
-1. Run `gulp` to build the CSS.
-1. Copy `config/environments/local-sample.php` to `config/environments/local.php` for a local environment, or `config/environments/production.php` for a production environment. Change the database paths, and add in all other details.
+1. Run `npm install` to install Gulp, ESLint, JSHint and JSCS.
+1. Run `npm run build` to build the CSS. `npm run dev` for development.
+1. Copy `.env.sample` to `.env` and add in and generate all details.
 
 ### Unit Tests Setup
 
@@ -85,4 +60,3 @@ Since Composer can also use Git repos, it makes more sense to just use Composer 
 ## Thoughts?
 
 I'd love to hear thoughts on how to improve this! So feel free to create any issues
-
