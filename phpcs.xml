@@ -21,7 +21,7 @@
 
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php" />
-	<file>./web/wp-content/mu-plugins/fooclient</file>
+	<file>./web/wp-content/mu-plugins</file>
 	<file>./web/wp-content/themes/fooclient</file>
 
 	<!-- Show progress and sniff codes in all reports -->

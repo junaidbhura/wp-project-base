@@ -1,21 +1,20 @@
 <?php
 /**
- * Bar module.
+ * Namespace functions.
  *
- * @package FooClient
- * @subpackage Bar
+ * @package FooClient\Bar
  */
 
 namespace FooClient\Bar;
 
 /**
- * Setup hooks and filters.
+ * Bootstrap the plugin.
  *
- * @return void
+ * Registers actions and filter required to run the plugin.
  */
-function setup() {
-	add_action( 'init', __NAMESPACE__ . '\post_type' );
-	add_action( 'init', __NAMESPACE__ . '\taxonomy' );
+function bootstrap() {
+	add_action( 'init', __NAMESPACE__ . '\\post_type' );
+	add_action( 'init', __NAMESPACE__ . '\\taxonomy' );
 
 	// Autoloaded class.
 	$baz = new Baz();

@@ -15,7 +15,7 @@ if ( defined( 'WP_INSTALLING' ) && WP_INSTALLING ) {
 $hm_mu_plugins = array(
 
 	// load mu-plugins here.
-	'fooclient/fooclient.php',
+	'foo-bar/plugin.php',
 
 );
 
