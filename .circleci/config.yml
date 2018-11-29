@@ -18,7 +18,7 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install -y mysql-client
-            sudo docker-php-ext-install mysqli
+            sudo -E docker-php-ext-install mysqli
             mysql -u root -e "CREATE DATABASE wp_tests"
       - restore_cache:
           keys:
