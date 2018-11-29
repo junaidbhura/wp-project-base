@@ -16,6 +16,7 @@ vendor
 !.jshintignore
 !.jshintrc
 !.tests
+!.env.sample
 !composer.json
 !composer.lock
 !gulpfile.js
@@ -31,10 +32,6 @@ vendor
 
 # -- Tests
 .tests/wp-tests-config-local.php
-
-# --- Config
-config/environments/*
-!config/environments/local-sample.php
 
 # --- WordPress
 web/*
