@@ -51,12 +51,12 @@ gulp.task( 'build-css', function() {
  * Watch Files.
  */
 gulp.task( 'watch', function() {
-	gulp.watch( pathToTheme + '/assets/css/fooclient/*.scss', ['build-css'] );
-	gulp.watch( pathToTheme + '/assets/css/fooclient/*/*.scss', ['build-css'] );
-	gulp.watch( pathToTheme + '/assets/css/fooclient/*/*/*.scss', ['build-css'] );
+	gulp.watch( pathToTheme + '/assets/css/fooclient/*.scss', gulp.series['build-css'] );
+	gulp.watch( pathToTheme + '/assets/css/fooclient/*/*.scss', gulp.series['build-css'] );
+	gulp.watch( pathToTheme + '/assets/css/fooclient/*/*/*.scss', gulp.series['build-css'] );
 } );
 
 /**
  * Default Task.
  */
-gulp.task( 'default', [ 'build-css', 'watch' ] );
+gulp.task( 'default', gulp.series( 'build-css', 'watch' ) );

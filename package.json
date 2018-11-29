@@ -4,7 +4,8 @@
   "description": "Custom website for Foo Client",
   "main": "index.php",
   "scripts": {
-    "build": "gulp build-css"
+    "build": "gulp build-css",
+    "dev": "gulp"
   },
   "repository": {
     "type": "git",
