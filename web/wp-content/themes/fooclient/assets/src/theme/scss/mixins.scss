@@ -54,17 +54,27 @@
 }
 
 @mixin transition( $property: all, $duration: 0.15, $ease: ease-in ) {
-	-webkit-transition: $property #{$duration}s $ease;
-	-moz-transition: $property #{$duration}s $ease;
-	-o-transition: $property #{$duration}s $ease;
 	transition: $property #{$duration}s $ease;
 }
 
-@mixin background-svg-fallback-png( $path ) {
-	$png-url: "#{$path}.png";
-	$svg-url: "#{$path}.svg";
-	background-image: url($png-url);
-	background-image: linear-gradient(transparent, transparent), url($svg-url);
+@mixin hover-color-darken-effect( $property: color, $color: #ccc, $darken: 10% ) {
+	#{$property}: $color;
+
+	@include transition( $property );
+
+	&:hover {
+		#{$property}: darken($color, $darken);
+	}
+}
+
+@mixin hover-color-effect( $property: color, $color: #ccc, $hover-color: #ddd ) {
+	#{$property}: $color;
+
+	@include transition( $property );
+
+	&:hover {
+		#{$property}: $hover-color;
+	}
 }
 
 @mixin placeholder-color( $color: #000, $opacity: 1 ) {
@@ -112,4 +122,29 @@
 		border-width: $half-height 0 $half-height $width;
 		border-color: transparent transparent transparent $color;
 	}
+}
+
+@mixin section() {
+	margin: $grid--row-gutter 0;
+
+	&.section--seamless {
+		margin: 0;
+		padding: $grid--row-gutter 0;
+	}
+}
+
+@mixin row() {
+
+	@include make-row( $grid-gutter-width );
+}
+
+@mixin column( $size ) {
+
+	@include make-col( $size, $grid-columns );
+}
+
+@mixin is-column() {
+	margin-bottom: $grid-gutter-width;
+
+	@include make-col-ready();
 }

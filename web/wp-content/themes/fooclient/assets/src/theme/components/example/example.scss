@@ -1,0 +1,12 @@
+/**
+ * Example Component.
+ */
+
+.example {
+	padding: $grid-gutter-width;
+	display: flex;
+
+	&--active {
+		background-color: $color-border;
+	}
+}

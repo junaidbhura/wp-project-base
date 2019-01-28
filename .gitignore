@@ -19,14 +19,15 @@ vendor
 !.env.sample
 !composer.json
 !composer.lock
-!gulpfile.js
 !package.json
+!package-lock.json
 !phpcs.xml
 !phpunit.xml
 !.stylelintrc
 !.stylelintignore
 !config/
 !web/
+!webpack.config.js
 !wp-cli.yml
 !README.md
 
@@ -38,7 +39,6 @@ web/*
 !wp-content/
 !web/index.php
 !web/wp-config.php
-!web/wp-config-local-sample.php
 
 # --- WP Content
 web/wp-content/*

@@ -1,0 +1,56 @@
+/**
+ * Functions.
+ */
+
+@function calculate-percentage( $target, $context: 1500px ) {
+
+	@return 100% * ( $target / $context );
+}
+
+@function calculate-em( $px-value, $parent-px-value: 16px ) {
+
+	@return ( $px-value / $parent-px-value ) * 1em;
+}
+
+@function calculate-rem( $px-value, $parent-px-value: 16px ) {
+
+	@return ( $px-value / $parent-px-value ) * 1rem;
+}
+
+@function strip-unit( $number ) {
+
+	@return $number / ( $number * 0 + 1 );
+}
+
+@function calculate-px( $original-value, $parent-px-value: 16 ) {
+
+	@return strip-unit( $original-value * $parent-px-value ) * 1px;
+}
+
+@function calculate-vw( $px-value, $viewport-width ) {
+
+	@return ( $px-value / $viewport-width ) * 100vw;
+}
+
+@function pow( $number, $exponent ) {
+	$value: 1;
+
+	@if $exponent > 0 {
+
+		@for $i from 1 through $exponent {
+			$value: $value * $number;
+		}
+	}
+
+	@return $value;
+}
+
+@function ms( $value, $base: 1rem, $ratio: 1.333 ) {
+
+	@return $base * pow( $ratio, $value );
+}
+
+@function grid-size( $size ) {
+
+	@return map-get( $grid-breakpoints, $size );
+}
