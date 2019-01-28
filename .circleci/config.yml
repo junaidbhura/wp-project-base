@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  php_stuff:
+  coding_standards_unit_tests:
     docker:
       - image: circleci/php:7.2-apache-node-browsers
         environment:
@@ -22,17 +22,21 @@ jobs:
             mysql -u root -e "CREATE DATABASE wp_tests"
       - restore_cache:
           keys:
-            - php-cache-{{ checksum "composer.lock" }}-{{ checksum ".circleci/config.yml" }}
+            - cache-{{ checksum "composer.lock" }}-{{ checksum "package-lock.json" }}-{{ checksum ".circleci/config.yml" }}
       - run:
           name: Install Composer Packages
           command: composer install
       - run:
+          name: Install Node Packages
+          command: sudo npm install --only=dev --unsafe-perm
+      - run:
           name: Install WordPress Coding Standards
           command: vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
       - save_cache:
-          key: php-cache-{{ checksum "composer.lock" }}-{{ checksum ".circleci/config.yml" }}
+          key: cache-{{ checksum "composer.lock" }}-{{ checksum "package-lock.json" }}-{{ checksum ".circleci/config.yml" }}
           paths:
             - vendor
+            - node_modules
             - web/wp
             - web/wp-content/plugins
       - run:
@@ -41,44 +45,18 @@ jobs:
       - run:
           name: Unit Tests
           command: vendor/bin/phpunit
-  node_stuff:
-    docker:
-      - image: circleci/node:latest
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - node-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}
       - run:
-          name: Install Node Packages
-          command: sudo npm install --unsafe-perm
-      - save_cache:
-          key: node-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}
-          paths:
-            - node_modules
+          name: Lint JavaScript
+          command: npm run lint-js
       - run:
-          name: ESLINT Test
-          command: node_modules/.bin/eslint web/wp-content/themes/fooclient/assets/js/main.js
-      - run:
-          name: StyleLint Test
-          command: |
-            node_modules/.bin/stylelint "web/wp-content/themes/fooclient/assets/css/*.scss"
-            node_modules/.bin/stylelint "web/wp-content/themes/fooclient/assets/css/**/*.scss"
-            node_modules/.bin/stylelint "web/wp-content/themes/fooclient/assets/css/**/**/*.scss"
-      - run:
-          name: JSHint Test
-          command: node_modules/.bin/jshint web/wp-content/themes/fooclient/assets/js/main.js
+          name: Lint CSS
+          command: npm run lint-css
+
 workflows:
   version: 2
-  test_everything:
+  tests:
     jobs:
-      - php_stuff:
-          filters:
-            branches:
-              only:
-                - master
-      - node_stuff:
+      - coding_standards_unit_tests:
           filters:
             branches:
               only:
