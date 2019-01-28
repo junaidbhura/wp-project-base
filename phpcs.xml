@@ -21,6 +21,7 @@
 
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php" />
+	<file>./config</file>
 	<file>./web/wp-content/mu-plugins</file>
 	<file>./web/wp-content/themes/fooclient</file>
 

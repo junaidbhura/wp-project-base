@@ -1,6 +1,8 @@
 <?php
 /**
  * Configuration overrides for WP_ENV === 'development'
+ *
+ * @package config
  */
 
 use Roots\WPConfig\Config;
@@ -11,7 +13,7 @@ Config::define( 'WP_DEBUG_DISPLAY', true );
 Config::define( 'SCRIPT_DEBUG', true );
 Config::define( 'DISALLOW_WP_CRON', false );
 
-ini_set( 'display_errors', 1 );
+ini_set( 'display_errors', 1 ); // @codingStandardsIgnoreLine
 
 // Enable plugin and theme updates and installation from the admin.
 Config::define( 'DISALLOW_FILE_MODS', false );
