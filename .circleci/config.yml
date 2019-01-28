@@ -51,7 +51,6 @@ jobs:
       - run:
           name: Lint CSS
           command: npm run lint-css
-
 workflows:
   version: 2
   tests:
