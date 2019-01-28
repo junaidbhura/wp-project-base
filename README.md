@@ -13,8 +13,6 @@ https://xwp.github.io/engineering-best-practices/
 
 https://roots.io/bedrock/
 
-https://www.cedaro.com/blog/structuring-wordpress-plugins/
-
 
 ## Introduction
 
@@ -47,7 +45,7 @@ Since Composer can also use Git repos, it makes more sense to just use Composer 
 1. Run `composer install` to install WordPress, and all plugins.
 1. Run `vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs` to set WordPress coding standards for PHPCS.
 1. Run `npm install` to install Gulp, ESLint, JSHint and JSCS.
-1. Run `npm run build` to build the CSS. `npm run dev` for development.
+1. Run `npm run build` to build the project. `npm run dev` for development.
 1. Copy `.env.sample` to `.env` and add in and generate all details.
 
 ### Unit Tests Setup
