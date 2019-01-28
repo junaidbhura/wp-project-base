@@ -2,7 +2,7 @@
 /**
  * Autoloader.
  *
- * @package FooClient\Bar
+ * @package foo-bar
  */
 
 namespace FooClient\Bar;

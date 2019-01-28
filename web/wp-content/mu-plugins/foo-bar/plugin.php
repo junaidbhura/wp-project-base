@@ -6,7 +6,7 @@
  * Author URI: https://junaidbhura.com
  * Version: 1.0.0
  *
- * @package FooClient\Bar
+ * @package foo-bar
  */
 
 namespace FooClient\Bar;

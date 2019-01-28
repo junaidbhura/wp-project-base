@@ -9,12 +9,11 @@ vendor
 # --- Root
 /*
 !.circleci
+!.eslintignore
 !.eslintrc.json
 !.editorconfig
 !.gitignore
 !.gitmodules
-!.jshintignore
-!.jshintrc
 !.tests
 !.env.sample
 !composer.json

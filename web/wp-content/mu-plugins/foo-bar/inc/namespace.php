@@ -2,7 +2,7 @@
 /**
  * Namespace functions.
  *
- * @package FooClient\Bar
+ * @package foo-bar
  */
 
 namespace FooClient\Bar;
@@ -15,6 +15,9 @@ namespace FooClient\Bar;
 function bootstrap() {
 	add_action( 'init', __NAMESPACE__ . '\\post_type' );
 	add_action( 'init', __NAMESPACE__ . '\\taxonomy' );
+
+	// Editor assets.
+	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\register_editor_assets' );
 
 	// Autoloaded class.
 	$baz = new Baz();
@@ -95,4 +98,27 @@ function taxonomy() {
 	);
 
 	register_taxonomy( 'foo_bars', array( 'foo_bar' ), $args );
+}
+
+/**
+ * Register editor assets.
+ */
+function register_editor_assets() {
+	$plugin_path = dirname( __FILE__, 2 ) . '/plugin.php';
+
+	wp_enqueue_script(
+		'foo-bar-blocks',
+		plugins_url( 'assets/dist/blocks.js', $plugin_path ),
+		[
+			'wp-i18n',
+			'wp-blocks',
+			'wp-components',
+			'wp-editor',
+			'wp-plugins',
+			'wp-edit-post',
+			'lodash',
+		],
+		1,
+		false
+	);
 }

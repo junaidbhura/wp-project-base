@@ -2,7 +2,7 @@
 /**
  * Baz related code.
  *
- * @package FooClient\Bar
+ * @package foo-bar
  */
 
 namespace FooClient\Bar;
