@@ -28,7 +28,7 @@ jobs:
           command: composer install
       - run:
           name: Install Node Packages
-          command: sudo npm install --only=dev --unsafe-perm
+          command: sudo npm install
       - run:
           name: Install WordPress Coding Standards
           command: vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
