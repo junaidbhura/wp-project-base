@@ -45,7 +45,7 @@ function foo_enqueue_scripts() {
 
 	// Enqueue JavaScript.
 	wp_deregister_script( 'jquery' );
-	wp_enqueue_script( 'jquery', get_bloginfo( 'template_url' ) . '/assets/vendor/jquery.min.js', null, '3.3.1', true );
+	wp_enqueue_script( 'jquery', get_bloginfo( 'template_url' ) . '/assets/lib/jquery.min.js', null, '3.3.1', true );
 	wp_enqueue_script( 'fooclient', get_bloginfo( 'template_url' ) . '/assets/dist/theme.js', array( 'jquery' ), '1', true );
 
 }
