@@ -1,5 +1,6 @@
 # Base for Scalable WordPress Projects
 
+[![CircleCI](https://circleci.com/gh/junaidbhura/wp-project-base.svg?style=svg)](https://circleci.com/gh/junaidbhura/wp-project-base)
 
 ## Inspiration and Credits ♥
 
