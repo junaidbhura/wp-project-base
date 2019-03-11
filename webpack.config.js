@@ -23,22 +23,18 @@ module.exports = ( env ) => {
 						babelrc: false,
 						presets: [
 							[
-								require( 'babel-preset-env' ),
+								'@babel/preset-env',
 								{
 									modules: false,
 									targets: { browsers: [
 										'ie >= 10',
-										'Firefox >= 30',
-										'Chrome >= 35',
+										'Firefox >= 32',
+										'Chrome >= 40',
 										'Safari >= 6',
-										'Opera >= 26',
+										'Opera >= 12',
 									] },
 								},
 							],
-						],
-						plugins: [
-							require( 'babel-plugin-transform-class-properties' ),
-							require( 'babel-plugin-transform-object-rest-spread' ),
 						],
 					},
 				},
@@ -58,10 +54,10 @@ module.exports = ( env ) => {
 								plugins: () => [ require( 'autoprefixer' )( {
 									browsers: [
 										'ie >= 10',
-										'Firefox >= 30',
-										'Chrome >= 35',
+										'Firefox >= 32',
+										'Chrome >= 40',
 										'Safari >= 6',
-										'Opera >= 26',
+										'Opera >= 12',
 									],
 								} ) ],
 							},
