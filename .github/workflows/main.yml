@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         apt-get update
-        apt-get install -y default-mysql-client
+        apt-get install -y git default-mysql-client
         docker-php-ext-install -j$(nproc) pdo pdo_mysql mysqli mbstring
 
     - name: Create database
