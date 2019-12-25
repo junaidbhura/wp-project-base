@@ -20,13 +20,15 @@ jobs:
 
     steps:
     - name: Install dependencies
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
       run: |
         apt-get update
         apt-get install -y git subversion default-mysql-client
         docker-php-ext-install -j$(nproc) pdo pdo_mysql mysqli mbstring
+
+    - name: Install NodeJS
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
 
     - name: Checkout repository
       uses: actions/checkout@v1
