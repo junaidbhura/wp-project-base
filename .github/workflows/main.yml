@@ -25,6 +25,10 @@ jobs:
         apt-get install -y default-mysql-client
         docker-php-ext-install -j$(nproc) pdo pdo_mysql mysqli mbstring
 
+    - name: Create database
+      run: |
+        mysqladmin create wp_tests --user="root" --password="root" --host=mysql --protocol=tcp
+
     - name: Install Composer
       run: |
         curl -sS https://getcomposer.org/installer | php
@@ -34,10 +38,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-
-    - name: Create database
-      run: |
-        mysqladmin create wp_tests --user="root" --password="root" --host=127.0.0.1 --protocol=tcp
 
     - name: Checkout repository
       uses: actions/checkout@v1
