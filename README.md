@@ -45,7 +45,7 @@ Since Composer can also use Git repos, it makes more sense to just use Composer 
 1. Clone this repository for your new project. `git clone https://github.com/junaidbhura/wp-project-base.git . && rm -rf .git`
 1. Run `composer install` to install WordPress, and all plugins.
 1. Run `vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs` to set WordPress coding standards for PHPCS.
-1. Run `npm install` to install Gulp, ESLint, JSHint and JSCS.
+1. Run `npm install` to install Webpack, ESLint and Stylelint.
 1. Run `npm run build` to build the project. `npm run dev` for development.
 1. Copy `.env.sample` to `.env` and add in and generate all details.
 
@@ -53,7 +53,7 @@ Since Composer can also use Git repos, it makes more sense to just use Composer 
 
 1. Create a new database for unit tests.
 1. Copy `.tests/wp-tests-config-local-sample.php` to `.tests/wp-tests-config-local.php` and add your local database.
-1. Run `vendor/bin/phpunit` to execute.
+1. Run `composer run test` to execute.
 
 
 ## Thoughts?

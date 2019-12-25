@@ -9,7 +9,6 @@ vendor
 # --- Root
 /*
 !.browserslistrc
-!.circleci
 !.eslintignore
 !.eslintrc.json
 !.editorconfig
