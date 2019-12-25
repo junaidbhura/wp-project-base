@@ -37,7 +37,7 @@ jobs:
 
     - name: Create database
       run: |
-        mysqladmin create wp_tests --user="root" --password="root"
+        mysqladmin create wp_tests --user="root" --password="root" --host=127.0.0.1 --protocol=tcp
 
     - name: Checkout repository
       uses: actions/checkout@v1
