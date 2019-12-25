@@ -27,6 +27,10 @@
     "squizlabs/php_codesniffer": "*",
     "phpunit/phpunit": "6.1.0",
     "wp-coding-standards/wpcs": "*"
+  },
+  "scripts": {
+    "lint-php": "phpcs",
+    "test": "phpunit"
   }
 }
 

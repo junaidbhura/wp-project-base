@@ -1,6 +1,6 @@
 # Base for Scalable WordPress Projects
 
-[![CircleCI](https://circleci.com/gh/junaidbhura/wp-project-base.svg?style=svg)](https://circleci.com/gh/junaidbhura/wp-project-base)
+![GitHub Actions](https://github.com/junaidbhura/wp-project-base/workflows/Coding%20Standards%20and%20Tests/badge.svg)
 
 ## Inspiration and Credits ♥
 
