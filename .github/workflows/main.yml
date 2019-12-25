@@ -12,7 +12,11 @@ jobs:
       mysql:
         image: mysql:5.7.27
         env:
-          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_HOST=127.0.0.1
+          MYSQL_PORT=3306
+          MYSQL_USER=root
+          MYSQL_PASSWORD=
+          MYSQL_ALLOW_EMPTY_PASSWORD=true
         ports:
           - 3306
         volumes:
