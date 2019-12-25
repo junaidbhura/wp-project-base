@@ -47,28 +47,28 @@ jobs:
       uses: actions/cache@v1
       with:
         path: vendor
-        key: composer-${{ hashFiles( '**/composer.lock' ) }}
+        key: composer-${{ hashFiles( 'composer.lock' ) }}
 
     - name: NodeJS cache
       id: node-cache
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: node-${{ hashFiles( '**/package-lock.json' ) }}
+        key: node-${{ hashFiles( 'package-lock.json' ) }}
 
     - name: WP cache
       id: wp-cache
       uses: actions/cache@v1
       with:
         path: web/wp
-        key: wp-${{ hashFiles( '**/composer.lock' ) }}
+        key: wp-${{ hashFiles( 'composer.lock' ) }}
 
     - name: WP plugins cache
       id: wp-plugins-cache
       uses: actions/cache@v1
       with:
         path: web/wp-content/plugins
-        key: wp-plugins-${{ hashFiles( '**/composer.lock' ) }}
+        key: wp-plugins-${{ hashFiles( 'composer.lock' ) }}
 
     - name: Install Composer dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
