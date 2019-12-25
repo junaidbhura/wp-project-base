@@ -12,11 +12,7 @@ jobs:
       mysql:
         image: mysql:5.7.27
         env:
-          MYSQL_HOST=127.0.0.1
-          MYSQL_PORT=3306
-          MYSQL_USER=root
-          MYSQL_PASSWORD=
-          MYSQL_ALLOW_EMPTY_PASSWORD=true
+          MYSQL_ROOT_PASSWORD: root
         ports:
           - 3306
         volumes:
@@ -41,7 +37,7 @@ jobs:
 
     - name: Create database
       run: |
-        mysql -u root -h 127.0.0.1 -e "CREATE DATABASE wp_tests"
+        mysql -u root -h 127.0.0.1 -proot -e "CREATE DATABASE wp_tests"
 
     - name: Checkout repository
       uses: actions/checkout@v1
