@@ -26,13 +26,6 @@ module.exports = ( env ) => {
 								'@babel/preset-env',
 								{
 									modules: false,
-									targets: { browsers: [
-										'ie >= 10',
-										'Firefox >= 32',
-										'Chrome >= 40',
-										'Safari >= 6',
-										'Opera >= 12',
-									] },
 								},
 							],
 						],
@@ -51,15 +44,7 @@ module.exports = ( env ) => {
 						{
 							loader: 'postcss-loader',
 							options: {
-								plugins: () => [ require( 'autoprefixer' )( {
-									browsers: [
-										'ie >= 10',
-										'Firefox >= 32',
-										'Chrome >= 40',
-										'Safari >= 6',
-										'Opera >= 12',
-									],
-								} ) ],
+								plugins: () => [ require( 'autoprefixer' ) ],
 							},
 						},
 						{

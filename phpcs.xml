@@ -10,6 +10,7 @@
 		<exclude name="WordPress.Variables.GlobalVariables.OverrideProhibited" />
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
 		<exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
 	</rule>
 	<rule ref="WordPress-Docs" />
 

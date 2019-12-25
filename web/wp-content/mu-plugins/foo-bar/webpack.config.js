@@ -40,15 +40,7 @@ module.exports = ( env ) => {
 						{
 							loader: 'postcss-loader',
 							options: {
-								plugins: () => [ require( 'autoprefixer' )( {
-									browsers: [
-										'ie >= 10',
-										'Firefox >= 30',
-										'Chrome >= 35',
-										'Safari >= 6',
-										'Opera >= 26',
-									],
-								} ) ],
+								plugins: () => [ require( 'autoprefixer' ) ],
 							},
 						},
 						{
