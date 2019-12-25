@@ -22,31 +22,33 @@ jobs:
     - name: Install dependencies
       run: |
         apt-get update
-        apt-get install -y git subversion default-mysql-client
+        apt-get install -y default-mysql-client
         docker-php-ext-install -j$(nproc) pdo pdo_mysql mysqli mbstring
+
+    - name: Install Composer
+      run: |
+        curl -sS https://getcomposer.org/installer | php
+        mv composer.phar /usr/local/bin/composer
 
     - name: Install NodeJS
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
 
+    - name: Create database
+      run: |
+        mysql -u root -h 127.0.0.1 -e "CREATE DATABASE wp_tests"
+
     - name: Checkout repository
       uses: actions/checkout@v1
 
     - name: Install Composer dependencies
       run: |
-        curl -sS https://getcomposer.org/installer | php
-        mv composer.phar /usr/local/bin/composer
-        composer global require "phpunit/phpunit=6.1.0"
-        composer global require wp-coding-standards/wpcs
-        $HOME/.composer/vendor/bin/phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
+        composer install
+        vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
 
     - name: Install NodeJS dependencies
       run: npm install
-
-    - name: Install WordPress test suite
-      run: |
-        bash ./.bin/install-wp-tests.sh wordpress_test root root mysql latest
 
     - name: PHP Coding standards
       run: composer run lint-php

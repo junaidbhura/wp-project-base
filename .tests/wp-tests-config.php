@@ -2,7 +2,7 @@
 
 $_SERVER['HTTP_HOST'] = 'localhost';
 
-if ( ! empty( getenv( 'CIRCLECI' ) ) ) {
+if ( ! empty( getenv( 'GITHUB_WORKFLOW' ) ) ) {
 	define( 'DB_NAME', 'wp_tests' );
 	define( 'DB_USER', 'root' );
 	define( 'DB_PASSWORD', '' );
