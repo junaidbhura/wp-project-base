@@ -13,16 +13,8 @@ jobs:
         image: mysql:5.7.27
         env:
           MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 3306
-        volumes:
-          - $HOME/mysql:/var/lib/mysql
 
     steps:
-    - name: Create database
-      run: |
-        mysqladmin create wp_tests --user="root" --password="root" --host=mysql --protocol=tcp
-
     - name: Install NodeJS
       uses: actions/setup-node@v1
       with:
@@ -77,6 +69,10 @@ jobs:
 
     - name: CSS Coding standards
       run: npm run lint-css
+
+    - name: Create database
+      run: |
+        mysqladmin create wp_tests --user="root" --password="root" --host=mysql --protocol=tcp
 
     - name: Unit tests
       run: composer run test
