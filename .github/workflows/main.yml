@@ -7,32 +7,16 @@ jobs:
 
     runs-on: ubuntu-latest
     container:
-      image: php:7.2-apache
+      image: junaidbhura/wp-tests:php-7.3
     services:
       mysql:
         image: mysql:5.7.27
         env:
           MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 3306
-        volumes:
-          - $HOME/mysql:/var/lib/mysql
-
-    steps:
-    - name: Install dependencies
-      run: |
-        apt-get update
-        apt-get install -y git default-mysql-client
-        docker-php-ext-install -j$(nproc) pdo pdo_mysql mysqli mbstring
 
     - name: Create database
       run: |
         mysqladmin create wp_tests --user="root" --password="root" --host=mysql --protocol=tcp
-
-    - name: Install Composer
-      run: |
-        curl -sS https://getcomposer.org/installer | php
-        mv composer.phar /usr/local/bin/composer
 
     - name: Install NodeJS
       uses: actions/setup-node@v1
