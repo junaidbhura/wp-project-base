@@ -15,6 +15,8 @@ jobs:
           MYSQL_ROOT_PASSWORD: root
         ports:
           - 3306
+        volumes:
+          - $HOME/mysql:/var/lib/mysql
 
     steps:
     - name: Create database
