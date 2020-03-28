@@ -13,8 +13,8 @@ jobs:
         image: mysql:5.7.27
         env:
           MYSQL_ROOT_PASSWORD: root
-        volumes:
-          - $HOME/mysql:/var/lib/mysql
+        ports:
+          - 3306
 
     steps:
     - name: Create database
