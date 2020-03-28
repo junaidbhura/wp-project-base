@@ -3,7 +3,7 @@ name: Coding Standards and Tests
 on: [push]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
     container:
@@ -13,6 +13,8 @@ jobs:
         image: mysql:5.7.27
         env:
           MYSQL_ROOT_PASSWORD: root
+        volumes:
+          - $HOME/mysql:/var/lib/mysql
 
     steps:
     - name: Create database
