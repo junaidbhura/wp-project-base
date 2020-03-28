@@ -14,6 +14,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
 
+    steps:
     - name: Create database
       run: |
         mysqladmin create wp_tests --user="root" --password="root" --host=mysql --protocol=tcp
