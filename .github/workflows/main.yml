@@ -6,8 +6,11 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: [7.3, 7.4]
     container:
-      image: junaidbhura/wp-tests:php-7.4
+      image: junaidbhura/wp-tests:php-${{ matrix.php-version }}
     services:
       mysql:
         image: mysql:5.7.27
