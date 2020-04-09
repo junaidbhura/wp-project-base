@@ -7,7 +7,7 @@ jobs:
 
     runs-on: ubuntu-latest
     container:
-      image: junaidbhura/wp-tests:php-7.3
+      image: junaidbhura/wp-tests:php-7.4
     services:
       mysql:
         image: mysql:5.7.27
