@@ -1,19 +1,16 @@
 name: Coding Standards and Tests
 
-on: [push]
+on: [ push ]
 
 jobs:
   test:
 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php-version: [7.3, 7.4]
     container:
-      image: junaidbhura/wp-tests:php-${{ matrix.php-version }}
+      image: junaidbhura/wp-tests:php-7.4
     services:
       mysql:
-        image: mysql:5.7.27
+        image: mysql:latest
         env:
           MYSQL_ROOT_PASSWORD: root
 
@@ -21,7 +18,7 @@ jobs:
     - name: Install NodeJS
       uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
+        node-version: '13.x'
 
     - name: Checkout repository
       uses: actions/checkout@v1
@@ -56,9 +53,7 @@ jobs:
 
     - name: Install Composer dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: |
-        composer install
-        vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs
+      run: composer install
 
     - name: Install NodeJS dependencies
       if: steps.node-cache.outputs.cache-hit != 'true'
@@ -74,8 +69,7 @@ jobs:
       run: npm run lint-css
 
     - name: Create database
-      run: |
-        mysqladmin create wp_tests --user="root" --password="root" --host=mysql --protocol=tcp
+      run: mysqladmin create wp_tests --user="root" --password="root" --host=mysql --protocol=tcp
 
     - name: Unit tests
       run: composer run test
