@@ -32,7 +32,7 @@ vendor
 !README.md
 
 # -- Tests
-.tests/wp-tests-config-local.php
+.tests/php/wp-tests-config-local.php
 
 # --- WordPress
 web/*

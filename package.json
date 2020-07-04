@@ -14,7 +14,7 @@
     "url": "git+https://github.com/Foo/Client.git"
   },
   "author": "Junaid Bhura",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Foo/Client/issues"
   },

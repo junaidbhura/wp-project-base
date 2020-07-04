@@ -1,5 +1,5 @@
 <phpunit
-	bootstrap=".tests/bootstrap.php"
+	bootstrap=".tests/php/bootstrap.php"
 	backupGlobals="false"
 	colors="true"
 	convertErrorsToExceptions="true"
@@ -7,10 +7,12 @@
 	convertWarningsToExceptions="true"
 	>
 	<testsuites>
-		<!-- Default test suite to run all tests -->
-		<testsuite name="Default">
-			<directory prefix="test-" suffix=".php">.tests</directory>
+		<testsuite name="wp-tests">
+			<directory prefix="test-" suffix=".php">.tests/php</directory>
 			<!--<directory prefix="test-" suffix=".php">wp-content/mu-plugins/fooclient/.tests</directory>-->
 		</testsuite>
 	</testsuites>
+	<php>
+		<env name="WP_PHPUNIT__TESTS_CONFIG" value=".tests/php/wp-tests-config.php" />
+	</php>
 </phpunit>
