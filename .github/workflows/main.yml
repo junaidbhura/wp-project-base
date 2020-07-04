@@ -90,9 +90,9 @@ jobs:
 
     - name: E2E Tests
       run: |
-        wp core install --url="http://localhost:8889" --title="E2E Tests" --admin_user=admin --admin_password=password --admin_email=info@example.com --allow-root
+        wp core install --url=$WP_HOME --title="E2E Tests" --admin_user=admin --admin_password=password --admin_email=info@example.com --allow-root
         cd web
         php -S localhost:8889 > /dev/null 2>&1 &
         cd ..
         npm run build
-        npm run test:e2e -- --wordpress-base-url=http://localhost:8889/wp
+        npm run test:e2e -- --wordpress-base-url=$WP_SITEURL
