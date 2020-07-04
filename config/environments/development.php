@@ -13,7 +13,7 @@ Config::define( 'WP_DEBUG_DISPLAY', true );
 Config::define( 'SCRIPT_DEBUG', true );
 Config::define( 'DISALLOW_WP_CRON', false );
 
-ini_set( 'display_errors', 1 ); // @codingStandardsIgnoreLine
+ini_set( 'display_errors', 1 ); // phpcs:ignore
 
 // Enable plugin and theme updates and installation from the admin.
 Config::define( 'DISALLOW_FILE_MODS', false );
