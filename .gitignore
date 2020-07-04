@@ -15,6 +15,7 @@ vendor
 !.github
 !.gitignore
 !.gitmodules
+!jest.config.js
 !.tests
 !.env.sample
 !composer.json

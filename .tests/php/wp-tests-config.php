@@ -3,10 +3,10 @@
 $_SERVER['HTTP_HOST'] = 'localhost';
 
 if ( ! empty( getenv( 'GITHUB_ACTIONS' ) ) ) {
-	define( 'DB_NAME', 'wp_tests' );
-	define( 'DB_USER', 'root' );
-	define( 'DB_PASSWORD', 'root' );
-	define( 'DB_HOST', 'mysql' );
+	define( 'DB_NAME', getenv( 'DB_NAME' ) );
+	define( 'DB_USER', getenv( 'DB_USER' ) );
+	define( 'DB_PASSWORD', getenv( 'DB_PASSWORD' ) );
+	define( 'DB_HOST', getenv( 'DB_HOST' ) );
 } else {
 	require_once 'wp-tests-config-local.php';
 }
@@ -31,6 +31,11 @@ if ( ! defined( 'WP_HOME' ) ) {
 // Define Path & URL for Content.
 define( 'WP_CONTENT_DIR', dirname( __DIR__ ) . '/../web/wp-content' );
 define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
+
+// Create "uploads" needed for tests.
+if ( ! is_dir( WP_CONTENT_DIR . '/uploads' ) ) {
+	mkdir( WP_CONTENT_DIR . '/uploads' );
+}
 
 $table_prefix = 'wptests_';
 

@@ -31,6 +31,17 @@ if ( 'development' === customConfig.mode ) {
 module.exports = () => {
 	const config = [
 		{
+			// MU Plugin.
+			...customConfig,
+			entry: {
+				blocks: `${ muPluginAssetsPath }/src/blocks.js`,
+			},
+			output: {
+				...customConfig.output,
+				path: `${ muPluginAssetsPath }/dist`,
+			},
+		},
+		{
 			// Theme.
 			...customConfig,
 			entry: {
@@ -40,17 +51,6 @@ module.exports = () => {
 			output: {
 				...customConfig.output,
 				path: `${ themeAssetsPath }/dist`,
-			},
-		},
-		{
-			// MU Plugin.
-			...customConfig,
-			entry: {
-				blocks: `${ muPluginAssetsPath }/src/blocks.js`,
-			},
-			output: {
-				...customConfig.output,
-				path: `${ muPluginAssetsPath }/dist`,
 			},
 		},
 	];

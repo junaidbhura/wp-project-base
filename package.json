@@ -6,8 +6,12 @@
   "scripts": {
     "build": "wp-scripts build --config ./webpack.config.js",
     "dev": "wp-scripts start --config ./webpack.config.js",
-    "lint-js": "wp-scripts lint-js web/wp-content/themes/fooclient/assets/src web/wp-content/mu-plugins",
-    "lint-css": "wp-scripts lint-style web/wp-content/themes/fooclient/assets/src web/wp-content/mu-plugins"
+    "lint:js": "wp-scripts lint-js web/wp-content/themes/fooclient/assets/src web/wp-content/mu-plugins",
+    "lint:css": "wp-scripts lint-style web/wp-content/themes/fooclient/assets/src web/wp-content/mu-plugins",
+    "lint:php": "composer run lint-php",
+    "test:php": "composer run test",
+    "test:e2e": "wp-scripts test-e2e",
+    "test:e2e-interactive": "wp-scripts test-e2e -- --puppeteer-interactive"
   },
   "repository": {
     "type": "git",
@@ -20,10 +24,12 @@
   },
   "homepage": "https://github.com/Foo/Client#readme",
   "devDependencies": {
+    "@wordpress/e2e-test-utils": "^4.10.0",
     "@wordpress/eslint-plugin": "^7.1.0",
     "@wordpress/scripts": "^12.0.0",
     "classnames": "^2.2.6",
     "eslint": "^7.4.0",
+    "puppeteer": "^5.0.0",
     "stylelint": "^13.6.1",
     "stylelint-config-wordpress": "^17.0.0",
     "webpack-notifier": "^1.8.0"

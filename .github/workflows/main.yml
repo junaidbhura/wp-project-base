@@ -1,6 +1,20 @@
 name: Coding Standards and Tests
 
-on: [ push ]
+on:
+  push:
+    branches:
+      - master
+    pull_request:
+      branches:
+        - master
+
+env:
+  DB_NAME: wp_tests
+  DB_USER: root
+  DB_PASSWORD: root
+  DB_HOST: mysql
+  WP_HOME: http://localhost:8889
+  WP_SITEURL: http://localhost:8889/wp
 
 jobs:
   test:
@@ -60,16 +74,25 @@ jobs:
       run: npm install
 
     - name: PHP Coding standards
-      run: composer run lint-php
+      run: npm run lint:php
 
     - name: JS Coding standards
-      run: npm run lint-js
+      run: npm run lint:js
 
     - name: CSS Coding standards
-      run: npm run lint-css
+      run: npm run lint:css
 
     - name: Create database
-      run: mysqladmin create wp_tests --user="root" --password="root" --host=mysql --protocol=tcp
+      run: mysqladmin create $DB_NAME --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST --protocol=tcp
 
-    - name: Unit tests
-      run: composer run test
+    - name: PHPUnit Tests
+      run: npm run test:php
+
+    - name: E2E Tests
+      run: |
+        wp core install --url="http://localhost:8889" --title="E2E Tests" --admin_user=admin --admin_password=password --admin_email=info@example.com --allow-root
+        cd web
+        php -S localhost:8889 > /dev/null 2>&1 &
+        cd ..
+        npm run build
+        npm run test:e2e -- --wordpress-base-url=http://localhost:8889/wp
