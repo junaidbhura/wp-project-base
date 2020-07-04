@@ -40,11 +40,11 @@ add_action(
 				$plugin_data['Name'] = $plugin_file;
 			}
 
-			$plugins['mustuse'][ $plugin_file ] = $plugin_data; // @codingStandardsIgnoreLine
+			$plugins['mustuse'][ $plugin_file ] = $plugin_data; // phpcs:ignore
 		}
 
 		// Recount totals.
-		$GLOBALS['totals']['mustuse'] = count( $plugins['mustuse'] ); // @codingStandardsIgnoreLine
+		$GLOBALS['totals']['mustuse'] = count( $plugins['mustuse'] ); // phpcs:ignore
 
 		// Only apply the rest if we're actually looking at the page.
 		if ( 'mustuse' !== $GLOBALS['status'] ) {

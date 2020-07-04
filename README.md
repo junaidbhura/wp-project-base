@@ -19,11 +19,6 @@ https://roots.io/bedrock/
 
 I've made this repo to constantly evolve with new ideas and best practices. I use this as a base for new client projects.
 
-
-## MU Plugin architecture
-
-I've used [HumanMade's plugin loader](https://github.com/humanmade/hm-base) and MU plugin architecture.
-
 #### Multiple Plugins
 
 All custom functionality is written in separate, modular plugins with the following philosophy:
@@ -33,10 +28,6 @@ All custom functionality is written in separate, modular plugins with the follow
 1. Make each plugin (module) do one thing
 1. Make it easy to add and remove new features
 1. Make it easy to maintain and test
-
-## Composer and Git Submodules
-
-Since Composer can also use Git repos, it makes more sense to just use Composer for dependancy management.
 
 ## Setup
 
@@ -51,9 +42,13 @@ Since Composer can also use Git repos, it makes more sense to just use Composer 
 ### Unit Tests Setup
 
 1. Create a new database for unit tests.
-1. Copy `.tests/wp-tests-config-local-sample.php` to `.tests/wp-tests-config-local.php` and add your local database.
+1. Copy `.tests/php/wp-tests-config-local-sample.php` to `.tests/php/wp-tests-config-local.php` and add your local database.
 1. Run `composer run test` to execute.
 
+### E2E Tests Setup
+
+1. Run `npm run test:e2e-interactive -- --wordpress-base-url=https://yoursite.test/wp --wordpress-username=admin --wordpress-password=password` for an interactive session.
+1. Run `npm run test:e2e -- --wordpress-base-url=https://yoursite.test/wp --wordpress-username=admin --wordpress-password=password` for a headless session.
 
 ## Thoughts?
 
