@@ -1,5 +1,4 @@
-ie >= 10
-Firefox >= 32
+ie >= 11
+Firefox >= 50
 Chrome >= 40
-Safari >= 6.1
-Opera >= 12
+Safari >= 8

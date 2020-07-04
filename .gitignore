@@ -40,6 +40,9 @@ web/*
 !web/index.php
 !web/wp-config.php
 
+# --- Build
+dist
+
 # --- WP Content
 web/wp-content/*
 !web/wp-content/themes/

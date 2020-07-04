@@ -4,10 +4,10 @@
   "description": "Custom website for Foo Client",
   "main": "index.php",
   "scripts": {
-    "build": "webpack --config ./webpack.config.js --mode production --env=production",
-    "dev": "webpack --config ./webpack.config.js --mode production --env=development --watch",
-    "lint-js": "eslint web/wp-content/themes/fooclient/assets/src web/wp-content/mu-plugins",
-    "lint-css": "stylelint web/wp-content/themes/fooclient/assets/src web/wp-content/mu-plugins"
+    "build": "wp-scripts build --config ./webpack.config.js",
+    "dev": "wp-scripts start --config ./webpack.config.js",
+    "lint-js": "wp-scripts lint-js web/wp-content/themes/fooclient/assets/src web/wp-content/mu-plugins",
+    "lint-css": "wp-scripts lint-style web/wp-content/themes/fooclient/assets/src web/wp-content/mu-plugins"
   },
   "repository": {
     "type": "git",
@@ -20,30 +20,15 @@
   },
   "homepage": "https://github.com/Foo/Client#readme",
   "devDependencies": {
-    "@wordpress/eslint-plugin": "^4.1.0",
-    "eslint": "^6.8.0",
-    "stylelint": "^13.3.3",
-    "stylelint-config-wordpress": "^14.0.0"
+    "@wordpress/eslint-plugin": "^7.1.0",
+    "@wordpress/scripts": "^12.0.0",
+    "classnames": "^2.2.6",
+    "eslint": "^7.4.0",
+    "stylelint": "^13.6.1",
+    "stylelint-config-wordpress": "^17.0.0",
+    "webpack-notifier": "^1.8.0"
   },
   "dependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.9.5",
-    "@babel/plugin-transform-react-jsx": "^7.9.4",
-    "@babel/preset-env": "^7.9.5",
-    "@wordpress/browserslist-config": "^2.6.0",
-    "autoprefixer": "^9.7.6",
-    "babel-loader": "^8.1.0",
-    "bootstrap": "4.3.1",
-    "classnames": "^2.2.6",
-    "css-loader": "^2.1.1",
-    "mini-css-extract-plugin": "^0.5.0",
-    "modularscale-sass": "^3.0.10",
-    "node-sass": "^4.14.0",
-    "postcss-loader": "^3.0.0",
-    "sass-loader": "^7.3.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-notifier": "^1.8.0"
+    "bootstrap": "4.5.0"
   }
 }

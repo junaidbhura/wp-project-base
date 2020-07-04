@@ -127,7 +127,7 @@
 @mixin section() {
 	margin: $grid--row-gutter 0;
 
-	&.section--seamless {
+	&.section--seamless { // stylelint-disable-line
 		margin: 0;
 		padding: $grid--row-gutter 0;
 	}
