@@ -1,1 +1,2 @@
-path: web/wp/
+ssh: 'docker-compose:phpfpm'
+path: wp/

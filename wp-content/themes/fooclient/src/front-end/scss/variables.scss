@@ -1,0 +1,40 @@
+/**
+ * Variables.
+ */
+
+// Global Variables.
+$is-editor: false !default;
+
+// Colors.
+$colors: (
+	"black": #000,
+	"white": #fff,
+) !default;
+
+$color-palette: (
+	"black": #000,
+	"white": #fff,
+) !default;
+
+$color-steps: ( 85, 70, 55, 40, 25, 10 ) !default;
+
+// Grid.
+$grid-breakpoints: (
+	xs: 400px,
+	sm: 576px,
+	md: 768px,
+	lg: 1024px,
+	xl: 1280px,
+	xxl: 1400px,
+	xxxl: 1600px,
+) !default;
+
+$grid-col-gutters: (
+	grid-size(xs): 15px,
+	grid-size(xxxl): 40px,
+) !default;
+
+$grid-section-gutters: (
+	grid-size(xs): 60px,
+	grid-size(xxxl): 110px,
+) !default;

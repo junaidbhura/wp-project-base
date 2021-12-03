@@ -2,39 +2,52 @@
   "name": "fooclient",
   "version": "1.0.0",
   "description": "Custom website for Foo Client",
-  "main": "index.php",
   "scripts": {
-    "build": "wp-scripts build --config ./webpack.config.js",
-    "dev": "wp-scripts start --config ./webpack.config.js",
-    "lint:js": "wp-scripts lint-js web/wp-content/themes/fooclient/assets/src web/wp-content/mu-plugins",
-    "lint:css": "wp-scripts lint-style web/wp-content/themes/fooclient/assets/src web/wp-content/mu-plugins",
+    "start": "npm ci && composer install --ignore-platform-reqs && npm run build && npm run local-environment:trust-certificate",
+    "update": "npm ci && composer install --ignore-platform-reqs",
+    "build": "npm run clear-assets && webpack --config ./webpack.config.js --mode production --env=production",
+    "dev": "npm run clear-assets && webpack --config ./webpack.config.js --mode production --env=development --watch",
+    "clear-assets": "rm -rf wp-content/themes/fooclient/dist",
+    "lint": "npm run lint:css && npm run lint:js && npm run lint:php",
+    "lint:js": "eslint wp-content/themes/fooclient/src",
+    "lint:css": "stylelint wp-content/themes/fooclient/src",
     "lint:php": "composer run lint-php",
     "test:php": "composer run test",
-    "test:e2e": "wp-scripts test-e2e",
-    "test:e2e-interactive": "wp-scripts test-e2e -- --puppeteer-interactive"
+    "lint-test": "npm run lint && npm run test:php",
+    "local-environment:trust-certificate": "sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ./.docker/ssl/fooclient.crt",
+    "local-environment:start": "docker-compose up -d",
+    "local-environment:stop": "docker-compose down"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Foo/Client.git"
+    "url": "git+https://github.com/junaidbhura/fooclient.git"
   },
   "author": "Junaid Bhura",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Foo/Client/issues"
-  },
-  "homepage": "https://github.com/Foo/Client#readme",
   "devDependencies": {
-    "@wordpress/e2e-test-utils": "^4.10.0",
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/plugin-transform-react-jsx": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
     "@wordpress/eslint-plugin": "^7.1.0",
-    "@wordpress/scripts": "^12.0.0",
+    "@wordpress/stylelint-config": "^19.1.0",
+    "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.1.0",
     "classnames": "^2.2.6",
+    "css-loader": "^4.2.1",
     "eslint": "^7.4.0",
-    "puppeteer": "^5.0.0",
-    "stylelint": "^13.6.1",
-    "stylelint-config-wordpress": "^17.0.0",
-    "webpack-notifier": "^1.8.0"
+    "mini-css-extract-plugin": "^0.10.0",
+    "node-sass": "^6.0.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^12.1.0",
+    "terser-webpack-plugin": "^5.1.4",
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-notifier": "^1.13.0",
+    "webpack-remove-empty-scripts": "^0.7.1",
+    "webpack-watched-glob-entries-plugin": "^2.1.10"
   },
   "dependencies": {
-    "bootstrap": "4.5.0"
+    "normalize.css": "^8.0.1",
+    "poly-fluid-sizing": "1.1.0"
   }
 }

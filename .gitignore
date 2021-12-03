@@ -8,6 +8,8 @@ vendor
 
 # --- Root
 /*
+!.bin
+!.docker
 !.browserslistrc
 !.eslintignore
 !.eslintrc.json
@@ -20,6 +22,7 @@ vendor
 !.env.sample
 !composer.json
 !composer.lock
+!docker-compose.yml
 !package.json
 !package-lock.json
 !phpcs.xml
@@ -27,7 +30,6 @@ vendor
 !.stylelintrc
 !.stylelintignore
 !config/
-!web/
 !webpack.config.js
 !wp-cli.yml
 !README.md
@@ -36,18 +38,20 @@ vendor
 .tests/php/wp-tests-config-local.php
 
 # --- WordPress
-web/*
 !wp-content/
-!web/index.php
-!web/wp-config.php
+!index.php
+!wp-config.php
 
 # --- Build
 dist
 
 # --- WP Content
-web/wp-content/*
-!web/wp-content/themes/
-!web/wp-content/mu-plugins/
+wp-content/*
+!wp-content/themes/
+!wp-content/mu-plugins/
+!wp-content/languages/
+!wp-content/object-cache.php
 
-web/wp-content/themes/*
-!web/wp-content/themes/fooclient/
+# --- Themes
+wp-content/themes/*
+!wp-content/themes/fooclient/

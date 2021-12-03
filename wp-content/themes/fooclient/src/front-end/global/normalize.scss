@@ -1,0 +1,11 @@
+/**
+ * Normalize / CSS Resets.
+ */
+
+@import "~normalize.css";
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
