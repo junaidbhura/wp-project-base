@@ -1,0 +1,118 @@
+/**
+ * Mixins.
+ */
+
+@import "~poly-fluid-sizing";
+
+@mixin grid( $gutter: var(--grid-col-gutter) ) {
+	display: grid;
+	grid-template-rows: auto;
+	grid-gap: $gutter;
+}
+
+@mixin grid-columns( $columns: 1, $row-gutter: var(--grid-row-gutter) ) {
+	grid-template-columns: repeat($columns, 1fr);
+	grid-row-gap: $row-gutter;
+}
+
+@mixin flex-grid( $gutter: var(--grid-col-gutter) ) {
+	display: flex;
+	flex-wrap: wrap;
+	flex: 1 0 100%;
+	margin-right: calc(#{ $gutter } / 2 * -1);
+	margin-left: calc(#{ $gutter } / 2 * -1);
+
+	> * {
+		flex-shrink: 0;
+		width: 100%;
+		max-width: 100%;
+		padding-right: calc(#{ $gutter } / 2);
+		padding-left: calc(#{ $gutter } / 2);
+	}
+}
+
+@mixin flex-grid-columns( $columns: 1, $row-gutter: var(--grid-row-gutter) ) {
+
+	> * {
+		$width: 100% * ( ( 12 / $columns ) / 12 );
+		flex: 0 0 auto;
+		width: $width;
+		margin-top: $row-gutter;
+
+		&:nth-child(-n + #{ $columns }) {
+			margin-top: 0;
+		}
+
+		&:first-child {
+			margin-left: auto;
+		}
+
+		&:last-child {
+			margin-right: auto;
+		}
+	}
+}
+
+@mixin transition( $property: all, $duration: 0.15, $ease: ease-in ) {
+	transition: $property #{$duration}s $ease;
+}
+
+@mixin css-triangle( $width: 11px, $height: 7px, $color: "#000", $direction: "down" ) {
+	width: 0;
+	height: 0;
+	border-style: solid;
+
+	@if ( $direction == "down" ) {
+		$half-width: $width / 2;
+		border-width: $height $half-width 0 $half-width;
+		border-color: $color transparent transparent transparent;
+	} @else if ( $direction == "up" ) {
+		$half-width: $width / 2;
+		border-width: 0 $half-width $height $half-width;
+		border-color: transparent transparent $color transparent;
+	} @else if ( $direction == "left" ) {
+		$half-height: $height / 2;
+		border-width: $half-height $width $half-height 0;
+		border-color: transparent $color transparent transparent;
+	} @else if ( $direction == "right" ) {
+		$half-height: $height / 2;
+		border-width: $half-height 0 $half-height $width;
+		border-color: transparent transparent transparent $color;
+	}
+}
+
+@mixin placeholder-color( $color: #000, $opacity: 1 ) {
+
+	&::-webkit-input-placeholder {
+		color: $color;
+		opacity: $opacity !important;
+	}
+
+	&::-moz-placeholder {
+		color: $color;
+		opacity: $opacity !important;
+	}
+
+	&:-moz-placeholder {
+		color: $color;
+		opacity: $opacity !important;
+	}
+
+	&:-ms-input-placeholder {
+		color: $color;
+		opacity: $opacity !important;
+	}
+}
+
+@mixin hover-color( $color: #000 ) {
+
+	@include transition();
+
+	&:hover {
+		color: $color;
+	}
+}
+
+@mixin calculate-aspect-ratio( $width, $height ) {
+	padding-bottom: ( ( $height / $width ) * 100 ) * 1%;
+}

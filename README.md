@@ -1,55 +1,59 @@
-# Base for Scalable WordPress Projects
 
 ![GitHub Actions](https://github.com/junaidbhura/wp-project-base/workflows/Coding%20Standards%20and%20Tests/badge.svg)
 
-## Inspiration and Credits ♥
+# Project Setup
 
-This project was inspired by the amazing work done by the following people:
+If you want to use this structure for Acme, Inc.:
 
-https://engineering.hmn.md/how-we-work/style/
+1. Clone this repository
+1. Find and replace all occurrences of `fooclient` to `acme`
+1. Find and replace all occurrences of `Foo Client` to `Acme, Inc.`
+1. Find and replace all occurrences of `foo` to `acme`
+1. Find and replace all occurrences of `Foo` to `Acme`
 
-https://10up.github.io/Engineering-Best-Practices/
+Create a local certificate
 
-https://xwp.github.io/engineering-best-practices/
+```
+cd .docker/ssl
 
-https://roots.io/bedrock/
+openssl req \
+    -newkey rsa:2048 \
+    -x509 \
+    -nodes \
+    -keyout fooclient.key \
+    -new \
+    -out fooclient.crt \
+    -subj /CN=fooclient.test \
+    -reqexts SAN \
+    -extensions SAN \
+    -config <(cat /System/Library/OpenSSL/openssl.cnf \
+        <(printf '[SAN]\nsubjectAltName=DNS:fooclient.test')) \
+    -sha256 \
+    -days 3650
+```
 
+## Local Setup
 
-## Introduction
+Make sure you have PHP 8.0 or higher, Docker, NodeJS 16 and Composer 2 or higher installed.
 
-I've made this repo to constantly evolve with new ideas and best practices. I use this as a base for new client projects.
+1. Copy the `.env.sample` file and rename it to `.env` and add / update your project details
+1. Run `npm run start` to install NodeJS and Composer packages. This also automatically installs the PHP coding standards. You will be prompted for your password to trust the SSL certificate
+1. Start your local environment (see below)
+1. Create a local database `echo "CREATE DATABASE fooclient;" | mysql -uroot -proot -h 0.0.0.0`
+1. If you don't use a Mac, go to `.docker/ssl` and trust the self-signed certificate in there. If you use a Mac, this should be done automatically
+1. Add `127.0.0.1 fooclient.test` to your hosts file
+1. Visit https://fooclient.test in your browser
+1. To access WP Admin, visit https://fooclient.test/wp/wp-admin/
+1. To access MailHog, visit http://0.0.0.0:8025
 
-#### Multiple Plugins
+### Starting and stopping the Docker environment
 
-All custom functionality is written in separate, modular plugins with the following philosophy:
+To start your local Docker environment, run: `npm run local-environment:start`
 
-1. Make the code modular
-1. Make the code re-usable
-1. Make each plugin (module) do one thing
-1. Make it easy to add and remove new features
-1. Make it easy to maintain and test
+To stop your local Docker environment, run: `npm run local-environment:stop`
 
-## Setup
+### PHPUnit Tests Setup
 
-### Environment Setup
-
-1. Clone this repository for your new project. `git clone https://github.com/junaidbhura/wp-project-base.git . && rm -rf .git`
-1. Run `composer install` to install WordPress, and all plugins.
-1. Run `npm install` to install Webpack, ESLint and Stylelint.
-1. Run `npm run build` to build the project. `npm run dev` for development.
-1. Copy `.env.sample` to `.env` and add in and generate all details.
-
-### Unit Tests Setup
-
-1. Create a new database for unit tests.
-1. Copy `.tests/php/wp-tests-config-local-sample.php` to `.tests/php/wp-tests-config-local.php` and add your local database.
-1. Run `composer run test` to execute.
-
-### E2E Tests Setup
-
-1. Run `npm run test:e2e-interactive -- --wordpress-base-url=https://yoursite.test/wp --wordpress-username=admin --wordpress-password=password` for an interactive session.
-1. Run `npm run test:e2e -- --wordpress-base-url=https://yoursite.test/wp --wordpress-username=admin --wordpress-password=password` for a headless session.
-
-## Thoughts?
-
-I'd love to hear thoughts on how to improve this! So feel free to create any issues
+1. Create a database `echo "CREATE DATABASE fooclient-tests;" | mysql -uroot -proot -h 0.0.0.0`
+1. Copy the file `.tests/php/wp-tests-config-local-sample.php` to `.tests/php/wp-tests-config-local.php`
+1. Run `npm run test:php` to run the tests

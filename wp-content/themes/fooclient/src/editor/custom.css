@@ -1,0 +1,11 @@
+/**
+ * Custom Editor CSS.
+ *
+ * Add CSS here related to the block editor, but outside
+ * the editor wrapper scope.
+ */
+
+.editor-styles-wrapper {
+	padding-left: var(--grid-col-gutter);
+	padding-right: var(--grid-col-gutter);
+}

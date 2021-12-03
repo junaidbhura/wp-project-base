@@ -1,0 +1,90 @@
+name: Coding Standards and Tests
+
+on:
+  pull_request:
+    branches:
+      - master
+
+env:
+  DB_NAME: wp_tests
+  DB_USER: root
+  DB_PASSWORD: root
+  DB_HOST: 0.0.0.0
+  ACF_PRO_KEY: ${{ secrets.ACF_PRO_KEY }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7.27
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.DB_PASSWORD }}
+          MYSQL_DATABASE: ${{ env.DB_NAME }}
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+          tools: composer, cs2pr
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Composer cache
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: composer-${{ hashFiles( 'composer.lock' ) }}-${{ hashFiles( '.github/workflows/tests.yml' ) }}
+
+      - name: NodeJS cache
+        id: node-cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-${{ hashFiles( 'package-lock.json' ) }}-${{ hashFiles( '.github/workflows/tests.yml' ) }}
+
+      - name: WP cache
+        id: wp-cache
+        uses: actions/cache@v2
+        with:
+          path: wp
+          key: wp-${{ hashFiles( 'composer.lock' ) }}-${{ hashFiles( '.github/workflows/tests.yml' ) }}
+
+      - name: WP plugins cache
+        id: wp-plugins-cache
+        uses: actions/cache@v2
+        with:
+          path: wp-content/plugins
+          key: wp-plugins-${{ hashFiles( 'composer.lock' ) }}-${{ hashFiles( '.github/workflows/tests.yml' ) }}
+
+      - name: Install Composer dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --ignore-platform-reqs
+
+      - name: Install NodeJS dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: PHP Coding standards
+        run: npm run lint:php
+
+      - name: JS Coding standards
+        run: npm run lint:js
+
+      - name: CSS Coding standards
+        run: npm run lint:css
+
+      - name: PHPUnit Tests
+        run: npm run test:php

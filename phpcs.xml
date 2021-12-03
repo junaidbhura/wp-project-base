@@ -1,16 +1,8 @@
 <?xml version="1.0"?>
 <ruleset name="WordPress Coding Standards">
 	<rule ref="WordPress-Extra">
-		<exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
-		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_fopen" />
-		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_fclose" />
-		<exclude name="WordPress.Arrays.ArrayDeclarationSpacing.AssociativeKeyFound" />
-		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize" />
-		<exclude name="WordPress.CSRF.NonceVerification.NoNonceVerification" />
-		<exclude name="WordPress.Variables.GlobalVariables.OverrideProhibited" />
-		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
-		<exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
 	</rule>
 	<rule ref="WordPress-Docs" />
 
@@ -22,9 +14,8 @@
 
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php" />
-	<file>./config</file>
-	<file>./web/wp-content/mu-plugins</file>
-	<file>./web/wp-content/themes/fooclient</file>
+	<file>./wp-content/mu-plugins</file>
+	<file>./wp-content/themes/fooclient</file>
 
 	<!-- Show progress and sniff codes in all reports -->
 	<arg value="ps" />

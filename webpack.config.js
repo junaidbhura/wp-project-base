@@ -1,59 +1,134 @@
 // External dependencies.
-const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const WebpackNotifierPlugin = require( 'webpack-notifier' );
+const TerserPlugin = require( 'terser-webpack-plugin' );
+const WebpackWatchedGlobEntries = require( 'webpack-watched-glob-entries-plugin' );
+const RemoveEmptyScriptsPlugin = require( 'webpack-remove-empty-scripts' );
+const path = require( 'path' );
 
-// Assets paths.
-const themeAssetsPath = `${ process.cwd() }/web/wp-content/themes/fooclient/assets`;
-const muPluginAssetsPath = `${ process.cwd() }/web/wp-content/mu-plugins/foo-bar/assets`;
+// Theme path.
+const themePath = `./wp-content/themes/fooclient`;
 
-// Custom configuration.
-const customConfig = {
-	...defaultConfig,
-	externals: {
-		react: 'React',
-		'react-dom': 'ReactDOM',
-		wp: 'wp',
-		jquery: 'jQuery',
-		gumponents: 'gumponents',
-	},
-};
+// Config.
+module.exports = ( env ) => {
+	// Build configuration.
+	const buildConfig = {
+		entry: {
+			global: `${ themePath }/src/front-end/global/index.js`,
+			editor: `${ themePath }/src/editor/index.js`,
+		},
+		module: {
+			rules: [
+				{
+					test: /\.(js)$/,
+					exclude: /node_modules/,
+					loader: 'babel-loader',
+					options: {
+						presets: [
+							'@babel/preset-env',
+						],
+						plugins: [
+							'@babel/plugin-transform-react-jsx',
+							'@babel/plugin-proposal-object-rest-spread',
+						],
+					},
+				},
+				{
+					test: /\.(sa|sc|c)ss$/,
+					use: [
+						MiniCssExtractPlugin.loader,
+						{
+							loader: 'css-loader',
+							options: {
+								url: false,
+							},
+						},
+						{
+							loader: 'postcss-loader',
+							options: {
+								plugins: () => [
+									require( 'autoprefixer' ),
+								],
+							},
+						},
+						{
+							loader: 'sass-loader',
+							options: {
+								sassOptions: {
+									outputStyle: 'compressed',
+								},
+							},
+						},
+					],
+				},
+			],
+		},
+		resolve: {
+			extensions: [ '*', '.js' ],
+		},
+		output: {
+			path: __dirname,
+			filename: `${ themePath }/dist/[name].js`,
+			publicPath: '/',
+		},
+		optimization: {
+			removeEmptyChunks: true,
+			minimize: true,
+			minimizer: [ new TerserPlugin( {
+				parallel: true,
+				terserOptions: {
+					format: {
+						comments: false,
+					},
+				},
+				extractComments: false,
+			} ) ],
+		},
+		plugins: [
+			new RemoveEmptyScriptsPlugin(),
+			new MiniCssExtractPlugin( {
+				filename: `${ themePath }/dist/[name].css`,
+			} ),
+		],
+		externals: {
+			wp: 'wp',
+			gumponents: 'gumponents',
+		},
+		performance: {
+			hints: false,
+		},
+	};
 
-if ( 'development' === customConfig.mode ) {
-	customConfig.plugins.push(
-		new WebpackNotifierPlugin( {
+	// Notification for dev.
+	if ( 'development' in env ) {
+		buildConfig.plugins.push( new WebpackNotifierPlugin( {
 			title: 'Build',
 			alwaysNotify: true,
-		} )
-	);
-}
+		} ) );
+	}
 
-// Build configuration.
-module.exports = () => {
-	const config = [
-		{
-			// MU Plugin.
-			...customConfig,
-			entry: {
-				blocks: `${ muPluginAssetsPath }/src/blocks.js`,
-			},
-			output: {
-				...customConfig.output,
-				path: `${ muPluginAssetsPath }/dist`,
-			},
+	// Components config.
+	const componentsConfig = {
+		...buildConfig,
+		entry: WebpackWatchedGlobEntries.getEntries(
+			[
+				path.resolve( __dirname, `${ themePath }/src/front-end/components/**/index.js` ),
+				path.resolve( __dirname, `${ themePath }/src/front-end/components/**/style.scss` ),
+			],
+		),
+		output: {
+			...buildConfig.output,
+			filename: `${ themePath }/dist/components/[name].js`,
 		},
-		{
-			// Theme.
-			...customConfig,
-			entry: {
-				theme: `${ themeAssetsPath }/src/theme/theme.js`,
-				editor: `${ themeAssetsPath }/src/editor/editor.js`,
-			},
-			output: {
-				...customConfig.output,
-				path: `${ themeAssetsPath }/dist`,
-			},
-		},
-	];
+		plugins: [
+			new RemoveEmptyScriptsPlugin(),
+			new MiniCssExtractPlugin( {
+				filename: `${ themePath }/dist/components/[name].css`,
+			} ),
+			new WebpackWatchedGlobEntries(),
+		],
+	};
 
-	return config;
+	// Return combined config.
+	return [ buildConfig, componentsConfig ];
 };

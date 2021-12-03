@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "settings": {
+    "color": {
+      "custom": false,
+      "customDuotone": false,
+      "customGradient": false,
+      "duotone": [],
+      "gradients": [],
+      "link": false,
+      "palette": [
+        {
+          "name": "Black",
+          "slug": "black",
+          "color": "#000"
+        },
+        {
+          "name": "White",
+          "slug": "white",
+          "color": "#fff"
+        }
+      ]
+    },
+    "spacing": {
+      "customMargin": false,
+      "customPadding": false,
+      "units": []
+    },
+    "typography": {
+      "customFontSize": false,
+      "customLineHeight": false,
+      "dropCap": false,
+      "fontSizes": []
+    }
+  }
+}

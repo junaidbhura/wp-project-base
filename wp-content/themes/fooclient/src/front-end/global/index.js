@@ -1,0 +1,4 @@
+/**
+ * Styles.
+ */
+import './index.scss';
