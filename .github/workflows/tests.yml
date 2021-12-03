@@ -3,7 +3,7 @@ name: Coding Standards and Tests
 on:
   push:
     branches:
-      - production
+      - master
   pull_request:
     branches:
       - master
