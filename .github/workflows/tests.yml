@@ -1,6 +1,9 @@
 name: Coding Standards and Tests
 
 on:
+  push:
+    branches:
+      - production
   pull_request:
     branches:
       - master
