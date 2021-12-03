@@ -5,7 +5,7 @@
  * @package fooclient
  */
 
-namespace EX\Theme\Core;
+namespace Foo\Theme\Core;
 
 /**
  * Setup.
@@ -63,6 +63,8 @@ function register_styles() {
 
 	// Register and enqueue styles.
 	$theme_version = wp_get_theme()->get( 'Version' );
+
+	wp_enqueue_style( 'foo-global', get_template_directory_uri() . '/dist/global.css', array(), $theme_version );
 }
 
 /**

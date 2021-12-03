@@ -4,4 +4,6 @@
 
 :root {
 	--font-family: sans-serif;
+	--ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+	--ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
 }

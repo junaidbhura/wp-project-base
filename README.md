@@ -1,7 +1,7 @@
 
 ![GitHub Actions](https://github.com/junaidbhura/wp-project-base/workflows/Coding%20Standards%20and%20Tests/badge.svg)
 
-# Project Setup
+# WordPress Project Base
 
 If you want to use this structure for Acme, Inc.:
 
