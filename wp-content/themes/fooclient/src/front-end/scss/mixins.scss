@@ -4,21 +4,6 @@
 
 @import "~poly-fluid-sizing";
 
-@mixin grid( $gutter: var(--grid-col-gutter) ) {
-	display: grid;
-	grid-template-rows: auto;
-	grid-gap: $gutter;
-}
-
-@mixin grid-columns( $columns: 1, $row-gutter: var(--grid-row-gutter) ) {
-	grid-template-columns: repeat($columns, 1fr);
-	grid-row-gap: $row-gutter;
-}
-
-@mixin transition( $property: all, $duration: 0.15, $ease: ease-in ) {
-	transition: $property #{$duration}s $ease;
-}
-
 @mixin css-triangle( $width: 11px, $height: 7px, $color: "#000", $direction: "down" ) {
 	width: 0;
 	height: 0;
