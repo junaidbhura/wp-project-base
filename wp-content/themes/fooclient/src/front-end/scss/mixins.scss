@@ -15,44 +15,6 @@
 	grid-row-gap: $row-gutter;
 }
 
-@mixin flex-grid( $gutter: var(--grid-col-gutter) ) {
-	display: flex;
-	flex-wrap: wrap;
-	flex: 1 0 100%;
-	margin-right: calc(#{ $gutter } / 2 * -1);
-	margin-left: calc(#{ $gutter } / 2 * -1);
-
-	> * {
-		flex-shrink: 0;
-		width: 100%;
-		max-width: 100%;
-		padding-right: calc(#{ $gutter } / 2);
-		padding-left: calc(#{ $gutter } / 2);
-	}
-}
-
-@mixin flex-grid-columns( $columns: 1, $row-gutter: var(--grid-row-gutter) ) {
-
-	> * {
-		$width: 100% * ( ( 12 / $columns ) / 12 );
-		flex: 0 0 auto;
-		width: $width;
-		margin-top: $row-gutter;
-
-		&:nth-child(-n + #{ $columns }) {
-			margin-top: 0;
-		}
-
-		&:first-child {
-			margin-left: auto;
-		}
-
-		&:last-child {
-			margin-right: auto;
-		}
-	}
-}
-
 @mixin transition( $property: all, $duration: 0.15, $ease: ease-in ) {
 	transition: $property #{$duration}s $ease;
 }
