@@ -9,10 +9,10 @@ echo "$REMOTE_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
 mkdir -p ~/.ssh && echo "StrictHostKeyChecking no" >> ~/.ssh/config
 
 # Git Config
-git config --global user.email "tools@enchantingtravels.com"
+git config --global user.email "root@junaid.dev"
 git config --global user.name "GitHub Deploy"
 
-# Clone Pantheon Repo
+# Clone Remote Repo
 git clone --single-branch --branch ${GITHUB_REF##*/} $REMOTE_GIT_REPOSITORY $HOME/remote-deploy --depth 1
 cd $HOME/remote-deploy
 
