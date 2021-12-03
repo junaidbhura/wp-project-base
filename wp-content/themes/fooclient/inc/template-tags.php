@@ -150,33 +150,3 @@ function foo_template_footer() {
 	echo $content; // phpcs:ignore -- No need to escape it, since all escaping happens in the template / components.
 	get_footer();
 }
-
-/**
- * Enqueue a style.
- *
- * @param string $handle Handle.
- */
-function foo_enqueue_style( string $handle = '' ) {
-	add_action(
-		'wp_enqueue_scripts',
-		function () use ( $handle ) {
-			wp_enqueue_style( $handle );
-		},
-		20
-	);
-}
-
-/**
- * Enqueue a script.
- *
- * @param string $handle Handle.
- */
-function foo_enqueue_script( string $handle = '' ) {
-	add_action(
-		'wp_enqueue_scripts',
-		function () use ( $handle ) {
-			wp_enqueue_script( $handle );
-		},
-		20
-	);
-}
