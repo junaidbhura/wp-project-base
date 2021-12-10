@@ -54,6 +54,5 @@ To stop your local Docker environment, run: `npm run local-environment:stop`
 
 ### PHPUnit Tests Setup
 
-1. Create a database `echo "CREATE DATABASE fooclient-tests;" | mysql -uroot -proot -h 0.0.0.0`
-1. Copy the file `.tests/php/wp-tests-config-local-sample.php` to `.tests/php/wp-tests-config-local.php`
+1. Create a database ```echo "CREATE DATABASE \`fooclient-tests\`;" | mysql -uroot -proot -h 0.0.0.0```
 1. Run `npm run test:php` to run the tests

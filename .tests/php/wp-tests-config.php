@@ -8,7 +8,10 @@ if ( ! empty( getenv( 'GITHUB_ACTIONS' ) ) ) {
 	define( 'DB_PASSWORD', getenv( 'DB_PASSWORD' ) );
 	define( 'DB_HOST', getenv( 'DB_HOST' ) );
 } else {
-	require_once 'wp-tests-config-local.php';
+	define( 'DB_NAME', getenv( 'TESTS_DB_NAME' ) );
+	define( 'DB_USER', getenv( 'TESTS_DB_USER' ) );
+	define( 'DB_PASSWORD', getenv( 'TESTS_DB_PASSWORD' ) );
+	define( 'DB_HOST', getenv( 'TESTS_DB_HOST' ) );
 }
 
 define( 'WP_TESTS_DOMAIN', 'localhost' );
